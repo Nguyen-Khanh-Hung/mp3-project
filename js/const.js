@@ -10,7 +10,7 @@ const endTime=document.querySelector('.time-end')
 const btn_next_song=document.querySelector('.btn-next')
 const btn_prev_song=document.querySelector('.btn-prev')
 const btn_random=document.querySelector('.btn-random')
-
+const playList=document.querySelector('#row_songs')
 
 
 

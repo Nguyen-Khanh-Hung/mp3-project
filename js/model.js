@@ -72,7 +72,7 @@ const app={
     render: function(songs){
       const __this=this
     var htmls= this.songs.map(function(song,index){
-          return ` <div class="album-songs ${index === __this.currentIndex ? 'active' :''}">  
+          return ` <div class="album-songs ${index === __this.currentIndex ? 'active' :''}" data-index="${index}">  
           <div class="song_order">
            <div class="song_order-icon"><i class="fa-solid fa-music"></i></div>  
               <div class="song_thumbnail">
@@ -149,10 +149,20 @@ const app={
         }
         btn_random.onclick=function(){
           _this.randomSong()
-          console.log( _this.randomSong());
-          
+          console.log(_this.randomSong());
           audio.play()
         }
+      playList.onclick=function(e){
+        const songNode= e.target.closest('.album-songs:not(.active');
+        if(songNode||e.target.closest('.option')){
+          _this.currentIndex=Number(songNode.dataset.index) 
+          _this.loadCurrentSong()
+          _this.render()
+          audio.play()
+        }
+        if(e.target.closest('.option')){
+        }
+      }
     },
     loadCurrentSong: function(){
         heading.textContent=this.currentSong.name
