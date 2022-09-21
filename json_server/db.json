@@ -1,0 +1,53 @@
+{
+  "songs": [
+    {
+      "name": "Hai phút hơn",
+      "title":"Hai phút hơn",
+      "singer": "Pháo, 2T",
+      "path": "https://zingmp3.vn/bai-hat/Hai-Phut-Hon-Phao-CM1X/ZWBI9WA8.html",
+      "image": "./assets/personal-song-lists/2 phút hơn.webp"
+    },
+    {
+      "name": "Đâu ai chung tình được mãi",
+      "title":"Đâu ai chung tình được mãi",
+      "singer": "Đinh Tùng Huy, ACV Remix",
+      "path": "https://zingmp3.vn/bai-hat/Ai-Chung-Tinh-Duoc-Mai-Dinh-Tung-Huy-ACV/ZUB790F8.html",
+      "image": "./assets/personal-song-lists/aichungtinhduocmai.webp"
+    },
+    {
+      "name": "Anh mắt ta chạm nhau",
+      "title":"Anh mắt ta chạm nhau",
+      "singer": "Ngô Lan Hương, Đại Mèo remix",
+      "path": "https://zingmp3.vn/bai-hat/Anh-Muon-Dua-Em-Ve-Khong-Ngo-Lan-Huong/ZO7Z068Z.html",
+      "image": "./assets/personal-song-lists/Ánh mắt ta chạm nhau.webp"
+    },
+    {
+      "name": "Chạy về nơi phía anh",
+      "title":"Chạy về nơi phía anh",
+      "singer": "Khắc Việt",
+      "path": "https://zingmp3.vn/bai-hat/Chay-Ve-Noi-Phia-Anh-Khac-Viet/ZZUB0I0E.html",
+      "image": "./assets/personal-song-lists/chay ve noi phia anh.webp"
+    },
+    {
+      "name": "Yêu đi đừng sợ",
+      "title":"Yêu đi đừng sợ",
+      "singer": "Only C",
+      "path": "https://zingmp3.vn/bai-hat/Yeu-Di-Dung-So-Yeu-Di-Dung-So-OST-OnlyC/ZW8IWOAU.html",
+      "image": "./assets/personal-song-lists/yêu đừng sợ đâu.jpeg"
+    },
+    {
+      "name": "Cô đơn dành cho ai",
+      "title":"Cô đơn dành cho ai",
+      "singer": "NAL, LEE KEN, Orinn Remix",
+      "path": "https://zingmp3.vn/bai-hat/Co-Don-Danh-Cho-Ai-Lee-Ken-Nal/ZOAFI9D9.html",
+      "image": "./assets/personal-song-lists/cô đơn dành cho ai.webp"
+    },
+    {
+      "name": "Gieo quẻ",
+      "title":"Gieo quẻ",
+      "singer": "Hoàng Thùy Linh",
+      "path": "https://zingmp3.vn/bai-hat/Gieo-Que-Hoang-Thuy-Linh-Den/ZZ060D0C.html",
+      "image": "./assets/personal-song-lists/chay ve noi phia anh.webp"
+    }
+  ]
+  }

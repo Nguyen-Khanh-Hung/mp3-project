@@ -12,17 +12,20 @@
     width: 100%;
     
 }
+.side-bar{
+    width: 15%;
+}
 .nav_tabs{
-    width: 260px;
+    width: 100%;
     height: 100%;
     background-color: #363c43;
-    padding: 25px;
 }
 .nav_logo{
     width: 120px;
     height: 70px;
     display: flex;
     align-items: center;
+    margin-left: 25px;
 }
 .nav_logo p{
     font-size: 2rem;
@@ -33,8 +36,16 @@
     width: 80%;
     height: 100%;
 }
+.nav_item.active{
+    background-color: #6c6f73;
+    border-left: 3px solid #dadada;
+    color: #fff;
+}
 .nav_item{
-    margin-top: 25px;
+    padding-left: 25px;
+    padding: 10px 0 10px 25px;
+    margin-top: 5px;
+    cursor: pointer;
 }
 
 .nav_link{
@@ -90,7 +101,6 @@
     height: 315px;
     overflow-x: hidden;
     overflow-y: auto;
-    margin-right: -15px;
     margin-top: 10px;
 }
 .nav_create{
@@ -99,6 +109,7 @@
     font-size: 1.4rem;
     text-transform: uppercase;
     font-weight: 600;
+    padding-left: 25px;
 }
 
 /* width */
@@ -120,11 +131,18 @@
 
 
   /* MUSIC */
-
+.body-music.active{
+    display: block;
+}
+.body-music{
+    display: none;
+}
 .music{
+    width: 85%;
     padding: 0 25px 25px 25px;
     overflow-y: auto;
-    height: 90vh;
+    height: 100vh;
+    padding-bottom: 90px;
 }
 .header-music{
   position: -webkit-sticky;
@@ -199,6 +217,9 @@
 .music_slider img{
     border-radius: 10px;
 }
+.music_suggest{
+    margin-top: 20px;
+}
 .music_suggest-list{
     margin-top: 25px;
 }
@@ -255,7 +276,7 @@
     border-radius: 10px;
   }
 .music_news{
-    margin-top: 60px;
+    margin-top: 40px;
 }
 
 .music_singer{
@@ -264,17 +285,19 @@
 .footer{
     position: fixed;
     width: 100%;
-    height: auto;
+    height: 80px;
     display: flex;
     background-color: #292e34;
     align-items: center;
-    padding: 10px;
+    padding: 30px;
     bottom: 0;
   z-index: 10000000;
+  justify-content: space-between;
 }
 .footer-song{
     display: flex;
     width: 20%;
+    align-items: center;
 }
 .footer-song-discrip{
     margin-left: 20px;
@@ -283,7 +306,7 @@
     height: 50px;
 }
 .footer_name-song{
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: #fff;
 }
 .footer_name-singer{
@@ -291,7 +314,8 @@
     color: #8d8b8f;
 }
 .footer_favorite{
-    width: 10%;
+    display: flex;
+    align-items: center;
 }
 .footer_favorite i{
     color: #fff;
@@ -301,6 +325,15 @@
 .footer_list-function{
     width: 40%;
     text-align: center;
+}
+.footer_list-function.playing .icon-play{
+    display: none;
+}
+.footer_list-function.playing .icon-pause{
+    display: block;
+}
+.footer_list-function .icon-pause{
+    display: none;
 }
 .footer_list-function input{
     width: 100%;
@@ -317,3 +350,111 @@
     color: #fff;
     font-size: 1.8rem;
 }
+.footer_time-music{
+    display: flex;
+}
+.footer_support{
+    display: flex;
+    align-items: center;
+}
+.footer_support-icon{
+    margin-left: 20px;
+}
+.footer_support-icon i{
+    color: #fff;
+    font-size: 1.4rem;
+}
+.footer_support-volume{
+    margin-left: 10px;
+}
+.library-songs{
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+}
+.library-songs h1{
+    font-size: 4rem;
+    color: #fff;
+    margin-right: 10px;
+}
+.library-songs i{
+    font-size: 3rem;
+    color: #fff;
+}
+.play-list{
+    margin-top: 30px;
+}
+.personal-songs{
+    margin-top: 40px;
+}
+.list-album-songs{
+    
+    margin-top: 10px;
+}
+.album-songs{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid hsla(0,0%,100%,0.05);;
+}
+.album-songs p{
+    font-size: 1.4rem;
+    color: #6c6f73;
+}
+
+.album-songs-title{
+    margin-left: 40px;
+}
+.song_order{
+    align-items: center;
+    display: flex;
+    width: 30%;
+}
+.song_order-icon{
+    margin-right: 10px;
+}
+.song_order-icon i{
+    color: #8d8b8f;
+}
+.song_thumbnail{
+    display: flex;
+    align-items: center;
+}
+.song_thumbnail-img{
+    height: 50px;
+}
+.song_thumbnail-img img
+{
+    height: 100%;
+}
+.song_thumbnail-detail{
+    margin-left: 10px;
+}
+.song_thumbnail-name{
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: #fff;
+    margin-bottom: 10px;
+    
+}
+.song_thumbnail-singer{
+    color: #8d8b8f;
+    font-weight: 500;
+}
+.song_name{
+    width: 25%;
+    text-align: left;
+    display: flex;
+    float: left;
+}
+.song_name-title{
+    color: #8d8b8f;
+    font-size: 1.4rem;
+    text-decoration: underline;
+}
+.song_name-title:hover{
+    color: #cbcbcb;
+    cursor: pointer;
+}
+

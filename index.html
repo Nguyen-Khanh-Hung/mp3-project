@@ -20,15 +20,15 @@
         <link rel="stylesheet" href="owlcarousel/assets/owl.theme.default.css">
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="owlcarousel/owl.carousel.min.js"></script>
+        <link rel="stylesheet" href="./css/owncarousel.css">
         <script>
             $(document).ready(function(){
                 $('.music_slider').owlCarousel({
-                 loop:true,
                  margin:10,
                  nav:true,
                  responsive:{
                  0:{
-                     items:1
+                     items:3
                  },
                 600:{
                  items:1
@@ -44,7 +44,7 @@
                  nav:true,
                  responsive:{
                  0:{
-                     items:1
+                     items:3
                  },
                 600:{
                  items:1
@@ -55,6 +55,7 @@
             }
             })
             });
+            
         </script>
 <body>
     <div class="app-container">
@@ -62,19 +63,18 @@
         <div class="side-bar">
             <ul class="nav_tabs">
                 <li class="nav_logo">
-                    <a href=""><img src="./assets/img/logo.png" alt=""></a>
+                    <a href="#"><img src="./assets/img/logo.png" alt=""></a>
                     <p>pulse</p>
                 </li>
-                <li class="nav_item">
+                <li class="nav_item js-item ">
+                    <a class="nav_link" href="#">
+                    <i class="fa-solid fa-house nav_icon"></i>
+                   Home</a>
+                </li>
+                <li class="nav_item js-item active">
                     <a class="nav_link" href="">
                     <i class="fa-solid nav_icon  fa-record-vinyl"></i>
                     Discover</a>
-                </li>
-                <li class="nav_item">
-                    <a class="nav_link" href="">
-                        <i class="fa-solid nav_icon  fa-chart-line"></i>
-                        Zingchart
-                    </a>
                 </li>
                 <li class="nav_item">
                     <a class="nav_link" href=""><i class="fa-solid nav_icon  fa-radio"></i>Radio</a>
@@ -107,7 +107,6 @@
                         <a class="nav_link" href=""><i class="fa-solid nav_icon fa-star"></i>Top
                             100</a>
                     </li>
-                   
                     <li class="nav_item">
                         <a class="nav_link" href=""><i class="fa-solid nav_icon  fa-icons"></i>Category</a>
                     </li>
@@ -147,7 +146,78 @@
                     </ul>
                 </div>
         </div>
-            <div class="grid wide">
+        <div class="body-music grid wide" >
+            <div class="library-songs">
+                <h1>Thư viện</h1>
+                <i class="fa-solid fa-circle-play"></i>
+            </div>
+            <div class="play-list">
+                <div class="music_news">
+                    <h2 class="music_suggest-heading">PLAYLIST  <i class="fa-solid fa-circle-plus"></i></h2>
+                    <ul class="row music_suggest-list">
+                        <li class="col p-2-4 parent">
+                            <ul>
+                                <li class="parent music-col-suggest">
+                                    <img class="music_suggest-img" src="./assets/music_news/news1.jpg" alt="">
+                                    <div class="overlay">
+                                    </div>
+                                    <div class="music-options">
+                                        <i class="fa-regular fa-heart"></i>
+                                        <i class="fa-regular fa-circle-play"></i>
+                                        <i class="fa-solid fa-ellipsis"></i>
+                                    </div>
+                                </li>
+                                <li class="music_suggest-item"><p>V-Pop Tháng 9/2022</p></li>
+                                <li class="music_suggest-item"><span>
+                                    Bảo Anh, Hồ Quang Hiếu, Vương Anh Tú
+                                    Ba với những ca khúc OST Việt
+                                </span> 
+                                </li>                
+                            </ul>
+                        </li>
+                        <li class="col p-2-4 parent">
+                            <ul>
+                                <li class="parent music-col-suggest">
+                                    <img class="music_suggest-img" src="./assets/music_news/hoàng dũng.webp" alt="">
+                                    <div class="overlay">
+                                    </div>
+                                    <div class="music-options">
+                                        <i class="fa-regular fa-heart"></i>
+                                        <i class="fa-regular fa-circle-play"></i>
+                                        <i class="fa-solid fa-ellipsis"></i>
+                                    </div>
+                                </li>
+                                <li class="music_suggest-item"><p>Guitar Vpop</p></li>
+                                <li class="music_suggest-item"><span>
+                                    Zing MP3
+                                </span> 
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="personal-songs">
+                <h2 class="music_suggest-heading">Thư viện bài hát</h2>
+                <div class="list-album-songs">
+                    <div class="album-songs">
+                        <div class="album-songs-title">
+                         <p>Bài hát</p>
+                         </div>
+                        <div class="album-songs-album">
+                            <p class="album-songs-title">Album</p>
+                        </div>
+                        <div class="song_time">
+                            <p>Thời gian</p>
+                        </div>
+                    </div>
+                    <div id="row_songs">
+                       <audio id="audio" src=""></audio>
+                    </div>
+                </div>
+            </div>
+         </div>
+        <div class="body-music active grid wide">
            
             <div class="music_slider owl-carousel owl-theme">
                     <div class="item"><img src="./assets/banner_slider/slider7.jpg" alt=""></div>
@@ -155,6 +225,121 @@
                     <div class="item"><img src="./assets/banner_slider/slider5.jpg" alt=""></div>
                     <div class="item"><img src="./assets/banner_slider/slider2.jpg" alt=""></div>
                     <div class="item"><img src="./assets/banner_slider/slider4.jpg" alt=""></div>
+                    <div class="item"><img src="./assets/banner_slider/slider8.jpg" alt=""></div>
+                    <div class="item"><img src="./assets/banner_slider/slider9.jpg" alt=""></div>
+            </div>
+            <div class="music_suggest">
+                <h2 class="music_suggest-heading">Có thể bạn muốn nghe</h2>
+                <ul class="row music_suggest-list">
+                    <li class="col p-2-4 parent">
+                        <ul>
+                            <li class="parent music-col-suggest">
+                                <img class="music_suggest-img" src="./assets/listen-recommend/recomend1.webp" alt="">
+                                <div class="overlay">
+                                </div>
+                                <div class="music-options">
+                                    <i class="fa-regular fa-heart"></i>
+                                    <i class="fa-regular fa-circle-play"></i>
+                                    <i class="fa-solid fa-ellipsis"></i>
+                                </div>
+                            </li>
+                            <li class="music_suggest-item"><p>Cover Nhạc Hoa Gây Bão</p></li>
+                            <li class="music_suggest-item"><span>
+                                Tăng Phúc, Huy Vạc, Dương Edward
+                            </span> 
+                            </li>
+                           
+                        </ul>
+                       
+                    </li>
+                    <li class="col p-2-4 parent">
+                        <ul>
+                            <li class="parent music-col-suggest">
+                                <img class="music_suggest-img" src="./assets/listen-recommend/recomend2.webp" alt="">
+                                <div class="overlay">
+                                </div>
+                                <div class="music-options">
+                                    <i class="fa-regular fa-heart"></i>
+                                    <i class="fa-regular fa-circle-play"></i>
+                                    <i class="fa-solid fa-ellipsis"></i>
+                                </div>
+                            </li>
+                            <li class="music_suggest-item"><p>Nhạc Phim Việt Nam Hay Nhất</p></li>
+                            <li class="music_suggest-item"><span>
+                                Phan Mạnh Quỳnh, Đức Phúc <br>
+                                Trịnh Thăng Bình
+                            </span> 
+                            </li>
+                           
+                        </ul>
+                       
+                    </li>
+                    <li class="col p-2-4 parent">
+                        <ul>
+                            <li class="parent music-col-suggest">
+                                <img class="music_suggest-img" src="./assets/listen-recommend/recomed3.webp" alt="">
+                                <div class="overlay">
+                                </div>
+                                <div class="music-options">
+                                    <i class="fa-regular fa-heart"></i>
+                                    <i class="fa-regular fa-circle-play"></i>
+                                    <i class="fa-solid fa-ellipsis"></i>
+                                </div>
+                            </li>
+                            <li class="music_suggest-item"><p>Dance Việt Hay Nhất</p></li>
+                            <li class="music_suggest-item"><span>
+                                Masew, K-ICM, SlimV <br>
+                                Hits nghe không biết chán là gì
+                            </span> 
+                            </li>
+                           
+                        </ul>
+                       
+                    </li>
+                    <li class="col p-2-4 parent">
+                        <ul>
+                            <li class="parent music-col-suggest">
+                                <img class="music_suggest-img" src="./assets/listen-recommend/recomend4.webp" alt="">
+                                <div class="overlay">
+                                </div>
+                                <div class="music-options">
+                                    <i class="fa-regular fa-heart"></i>
+                                    <i class="fa-regular fa-circle-play"></i>
+                                    <i class="fa-solid fa-ellipsis"></i>
+                                </div>
+                            </li>
+                            <li class="music_suggest-item"><p>EDM Việt Gây Nghiện</p></li>
+                            <li class="music_suggest-item"><span>
+                                K-ICM, Touliver <br>
+                                V-Pop nổi bật nhất hiện nay
+                            </span> 
+                            </li>
+                           
+                        </ul>
+                       
+                    </li>
+                    <li class="col p-2-4 parent">
+                        <ul>
+                            <li class="parent music-col-suggest">
+                                <img class="music_suggest-img" src="./assets/listen-recommend/recomend5.webp" alt="">
+                                <div class="overlay">
+                                </div>
+                                <div class="music-options">
+                                    <i class="fa-regular fa-heart"></i>
+                                    <i class="fa-regular fa-circle-play"></i>
+                                    <i class="fa-solid fa-ellipsis"></i>
+                                </div>
+                            </li>
+                            <li class="music_suggest-item"><p>Chill Cùng Rap Việt</p></li>
+                            <li class="music_suggest-item"><span>
+                                Binz, Đen Vâu, HieuThuHai
+                            </span> 
+                            </li>
+                           
+                        </ul>
+                       
+                    </li>
+                </ul>
             </div>
             <div class="music_suggest">
                 <h2 class="music_suggest-heading">Dành cho bạn</h2>
@@ -387,19 +572,16 @@
                     <li class="col p-4 parent">
                         <ul>
                             <li class="parent music-col-suggest">
-                                <img class="music_suggest-img" src="./assets/banner_tank/banner_rank1.jpg" alt="">
-                                
+                                <img class="music_suggest-img" src="./assets/banner_tank/banner_rank1.jpg" alt="">  
                             </li>
                         </ul>
                     </li>
                     <li class="col p-4 parent">
                         <ul>
                             <li class="parent music-col-suggest">
-                                <img class="music_suggest-img" src="./assets/banner_tank/banner_rank2.jpg" alt="">
-                                
+                                <img class="music_suggest-img" src="./assets/banner_tank/banner_rank2.jpg" alt=""> 
                             </li>
-                        </ul>
-                       
+                        </ul> 
                     </li>
                     <li class="col p-4 parent">
                         <ul>
@@ -421,13 +603,10 @@
                 <div class="item"><img class="image" src="./assets/singer/mr-siro.png" alt=""></div>
                 <div class="item"><img class="image" src="./assets/singer/onlyc.png" alt=""></div>
                 <div class="item"><img class="image" src="./assets/singer/trinh-thanh-binh.png" alt=""></div>
-        </div>
-            <div class="music_top100">
-
             </div>
-             </div>
+            <img src="./assets/Album_mp3/Gieo Que - Hoang Thuy Linh_ Den.mp3" alt="">
         </div>
-
+        </div>
     </div>
     <div class="footer">
         <div class="footer-song">
@@ -436,23 +615,48 @@
             <div class="footer_name-song">Chẳng nói nên lời</div>
             <div class="footer_name-singer">Hoàng Dũng</div>
         </div>
-    </div>
         <div class="footer_favorite">
             <i class="fa-regular fa-heart"></i>
             <i class="fa-solid fa-ellipsis"></i>
         </div>
+    </div>
         <div class="footer_list-function">
             <div class="footer_function-icon">
-                <i class="fa-solid fa-shuffle"></i>
-                <i class="fa-solid fa-backward"></i>
-                <i class="fa-solid fa-play"></i>
-                <i class="fa-solid fa-forward"></i>
-                <i class="fa-solid fa-repeat"></i>
+                <div class="btn-random">
+                    <i class="fa-solid fa-shuffle"></i>
+                </div>
+                <div class="btn-prev">
+                    <i class="fa-solid fa-backward"></i>
+                </div>
+                <div class="btn-toggle-play">
+                    <i class="fa-solid fa-pause icon-pause"></i>
+                    <i class="fa-solid fa-play icon-play"></i>
+                </div>
+                <div class="btn-next">
+                    <i class="fa-solid fa-forward"></i>
+                </div>
+                <div class="btn-repeat">
+                    <i class="fa-solid fa-repeat"></i>
+                </div>
+               
             </div>
-            <input type="range">
+            <div class="footer_time-music">
+             <input id="range-input" type="range" step="1" min="1" max="100" value="0">
+               
+            </div>
+         
+        </div>
+        <div class="footer_support">
+           <div class="footer_support-icon"><i class="fa-solid fa-microphone"></i></div> 
+           <div class="footer_support-icon"><i class="fa-solid fa-window-restore"></i></div> 
+           <div class="footer_support-icon"><i class="fa-solid fa-volume-high"></i></div> 
+           <div class="footer_support-volume"><input type="range"></div>   
+            <div class="footer_support-icon"> <i class="fa-solid fa-list-ol"></i></div>
         </div>
     </div>
 </div>
+<script src="./js/const.js"></script>
+<script src="./js/model.js"></script>
+<script src="./js/view.js"></script>
 </body>
-
 </html>
