@@ -70,10 +70,9 @@ const app={
         }
       ],
     render: function(songs){
+      const __this=this
     var htmls= this.songs.map(function(song,index){
-      console.log(this.currentIndex);
-      
-          return ` <div class="album-songs ${index === this.currentIndex ? 'active' :''}">  
+          return ` <div class="album-songs ${index === __this.currentIndex ? 'active' :''}">  
           <div class="song_order">
            <div class="song_order-icon"><i class="fa-solid fa-music"></i></div>  
               <div class="song_thumbnail">
@@ -138,10 +137,12 @@ const app={
         btn_next_song.onclick=function(){
           _this.nextSong()
           audio.play()
+          _this.render()
         }
         btn_prev_song.onclick=function(){
           _this.prevSong()
           audio.play()
+          _this.render()
         }
         audio.onended=function(){
           btn_next_song.click()

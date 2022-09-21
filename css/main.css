@@ -398,6 +398,21 @@
     padding: 10px;
     border-bottom: 1px solid hsla(0,0%,100%,0.05);;
 }
+.album-songs.active{
+    background-color: #292929;
+}
+.album-songs.active .song_thumbnail-singer{
+    color: #fff;
+}
+.album-songs.active .song_name-title{
+    color: #fff;
+}
+.album-songs.active .song_order-icon{
+    color: #fff;
+}
+.album-songs.active ~.song_time{
+    color: #fff;
+}
 .album-songs p{
     font-size: 1.4rem;
     color: #6c6f73;
