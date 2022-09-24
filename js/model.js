@@ -10,16 +10,12 @@ TAB_ITEMS.forEach(function (item, index) {
     })
 })
 // Render songs
-function render(){
-
-}
-render()
-
 const app={
     currentIndex: 0,
     isPlaying: false,
     songs: [
         {
+          id:1,
           name: "Hai phút hơn",
           title:"Hai phút hơn",
           singer: "Pháo, 2T",
@@ -27,6 +23,7 @@ const app={
           image: "./assets/personal-song-lists/2 phút hơn.webp"
         },
         {
+          id:2,
           name: "Đâu ai chung tình được mãi",
           title:"Đâu ai chung tình được mãi",
           singer: "Đinh Tùng Huy, ACV Remix",
@@ -34,6 +31,7 @@ const app={
           image: "./assets/personal-song-lists/aichungtinhduocmai.webp"
         },
         {
+          id:3,
           name: "Anh mắt ta chạm nhau",
           title:"Anh mắt ta chạm nhau",
           singer: "Ngô Lan Hương, Đại Mèo remix",
@@ -41,6 +39,7 @@ const app={
           image: "./assets/personal-song-lists/Ánh mắt ta chạm nhau.webp"
         },
         {
+          id:4,
           name: "Chạy về nơi phía anh",
           title:"Chạy về nơi phía anh",
           singer: "Khắc Việt",
@@ -48,6 +47,7 @@ const app={
           image: "./assets/personal-song-lists/chay ve noi phia anh.webp"
         },
         {
+          id:5,
           name: "Yêu đi đừng sợ",
           title:"Yêu đi đừng sợ",
           singer: "Only C",
@@ -55,6 +55,7 @@ const app={
           image: "./assets/personal-song-lists/yêu đừng sợ đâu.jpeg"
         },
         {
+          id:6,
           name: "Cô đơn dành cho ai",
           title:"Cô đơn dành cho ai",
           singer: "NAL, LEE KEN, Orinn Remix",
@@ -62,21 +63,22 @@ const app={
           image: "./assets/personal-song-lists/cô đơn dành cho ai.webp"
         },
         {
+          id:7,
           name: "Gieo quẻ",
           title:"Gieo quẻ",
           singer: "Hoàng Thùy Linh",
           path: "./assets/Album_mp3/Gieo Que - Hoang Thuy Linh_ Den.mp3",
-          image: "./assets/personal-song-lists/chay ve noi phia anh.webp"
+          image: "./assets/personal-song-lists/gieo quẻ.webp"
         }
       ],
     render: function(songs){
       const __this=this
     var htmls= this.songs.map(function(song,index){
-          return ` <div class="album-songs ${index === __this.currentIndex ? 'active' :''}" data-index="${index}">  
+          return `<div class="album-songs ${index === __this.currentIndex ? 'active' :''}" data-index="${index}">  
           <div class="song_order">
            <div class="song_order-icon"><i class="fa-solid fa-music"></i></div>  
               <div class="song_thumbnail">
-                  <div class="song_thumbnail-img"><img src="${song.image}" alt=""></div>
+                  <div class="song_thumbnail-img"><img class="thumbnail-path" src="${song.image}" alt=""></div>
                   <div class="song_thumbnail-detail">
                       <div class="song_thumbnail-name">${song.name}</div>
                       <div class="song_thumbnail-singer">${song.singer}</div>
@@ -92,13 +94,12 @@ const app={
       </div>`
       })
       document.querySelector('#row_songs').innerHTML=htmls.join('');
-
     },
     defineProperties: function(){
         Object.defineProperty(this, 'currentSong',{
             get: function(){
-                return this.songs[this.currentIndex]
-            }
+                return this.songs[this.currentIndex]  
+            }  
         })
     },
     handleEvents: function(){
@@ -149,20 +150,54 @@ const app={
         }
         btn_random.onclick=function(){
           _this.randomSong()
-          console.log(_this.randomSong());
-          audio.play()
         }
-      playList.onclick=function(e){
+        playList.onclick=function(e){
         const songNode= e.target.closest('.album-songs:not(.active');
-        if(songNode||e.target.closest('.option')){
-          _this.currentIndex=Number(songNode.dataset.index) 
+        if(songNode){
+          _this.currentIndex=Number(songNode.getAttribute('data-index')) 
           _this.loadCurrentSong()
           _this.render()
+          let tasks = _this.getLocalStorage();
+          _this.renderRecentSongs(tasks)
           audio.play()
         }
-        if(e.target.closest('.option')){
-        }
+        var thumbnail_path= songNode.querySelector('.thumbnail-path')
+        var imagePath=thumbnail_path.getAttribute('src');
+        var dataPath=songNode.getAttribute('data-index');
+        var song_name= songNode.querySelector('.song_thumbnail-name').textContent
+        var songSinger= songNode.querySelector('.song_thumbnail-singer').textContent
+        let tasks = _this.getLocalStorage();
+      var objectSongs={
+        dataPath,
+        imagePath,
+        name_title: song_name,
+        singer_title: songSinger,
       }
+        tasks.push(objectSongs);
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+      _this.renderRecentSongs(tasks)
+      e.preventDefault();
+        }
+        playListRecently.onclick=function(e){
+        const songNode= e.target.closest('.album-songs:not(.active');
+        if(songNode){
+          _this.currentIndex=Number(songNode.dataset.index) 
+          _this.loadCurrentSong()
+        let tasks = _this.getLocalStorage();
+          _this.renderRecentSongs(tasks)
+          audio.play()
+        }
+        }
+        document.querySelector(".search").onkeyup=function(e){
+        let valueSearchInput = e.target.value;
+        console.log(valueSearchInput);
+        var filterTasks= _this.songs.filter(function(value) {
+        return value.name.toLowerCase().includes(valueSearchInput)}
+        )
+        console.log(filterTasks);
+        _this.render(filterTasks)
+        _this.loadCurrentSong()
+        }    
     },
     loadCurrentSong: function(){
         heading.textContent=this.currentSong.name
@@ -171,14 +206,48 @@ const app={
         audio.src=this.currentSong.path  
     },
     randomSong: function(){
-      Math.floor(Math.random() * app.songs.length)
+      let newIndex
+      do{
+        newIndex=Math.floor(Math.random() * app.songs.length)
+      }while(newIndex===this.currentIndex)
+      this.currentIndex=newIndex
+      this.loadCurrentSong()
+      audio.play()
+      this.render()
     },
+    renderRecentSongs:function(tasks){
+        let content = "";
+        tasks.forEach(function(task, index) {
+          return content += `<div class="album-songs ${task.dataPath===this.currentIndex ? 'active' :''}" data-index="${task.dataPath}">  
+          <div class="song_order">
+           <div class="song_order-icon"><i class="fa-solid fa-music"></i></div>  
+              <div class="song_thumbnail">
+                  <div class="song_thumbnail-img"><img class="thumbnail-path" src="${task.imagePath}" alt=""></div>
+                  <div class="song_thumbnail-detail">
+                      <div class="song_thumbnail-name">${task.name_title}</div>
+                      <div class="song_thumbnail-singer">${task.singer_title}</div>
+                  </div>
+              </div>
+           </div>
+          <div class="song_name">
+              <p class="song_name-title">${task.name_title}</p>
+          </div>
+          <div class="song_time">
+              <p>4p32s</p>
+          </div>
+      </div> `;
+        });
+        document.querySelector(".recent-songs").innerHTML = content;
+      },
     nextSong: function(){
       this.currentIndex++
       if(this.currentIndex>=this.songs.length){
           this.currentIndex=0
       }
       this.loadCurrentSong();
+    },
+    getLocalStorage:function() {
+      return localStorage.getItem("tasks") ? JSON.parse(localStorage.getItem("tasks")): [];
     },
     prevSong: function(){
       this.currentIndex--
@@ -195,6 +264,8 @@ const app={
         // Xử lý sự kiện
         this.loadCurrentSong()
         this.handleEvents();
+        let tasks = this.getLocalStorage();
+        this.renderRecentSongs(tasks);
     }
 }
 app.start()

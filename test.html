@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var values = [
+    { name: 'someName1' },
+    { name: 'someName2' },
+    { name: 'someName4' },
+    { name: 'someName2' }
+];
+
+var valueArr = values.map(function(item){ return item.name });
+function getValue(){
+    var isDuplicate = valueArr.some(function(item, idx){ 
+    return valueArr.indexOf(item) != idx 
+});
+}
+
+console.log(getValue());
+    </script>
+</body>
+</html>

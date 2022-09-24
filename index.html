@@ -65,54 +65,49 @@
             <ul class="nav_tabs">
                 <li class="nav_logo">
                     <a href="#"><img src="./assets/img/logo.png" alt=""></a>
-                    <p>pulse</p>
-                </li>
-                <li class="nav_item js-item ">
-                    <a class="nav_link" href="#">
-                    <i class="fa-solid fa-house nav_icon"></i>
-                   Home</a>
+                    <span>pulse</span>
                 </li>
                 <li class="nav_item js-item active">
+                    <a class="nav_link" href="#">
+                    <i class="fa-solid fa-house nav_icon"></i>
+                  <span>Home</span> </a>
+                </li>
+                <li class="nav_item js-item ">
                     <a class="nav_link" href="">
                     <i class="fa-solid nav_icon  fa-record-vinyl"></i>
                     Discover</a>
                 </li>
-                <li class="nav_item">
-                    <a class="nav_link" href=""><i class="fa-solid nav_icon  fa-radio"></i>Radio</a>
+                <li class="nav_item js-item ">
+                    <a class="nav_link" href=""><i class="fa-solid nav_icon  fa-star"></i> <span>Favorites Songs</span> </a>
                 </li>
-                <li class="nav_item">
-                    <a class="nav_link" href=""><i class="fa-solid nav_icon fa-list"></i>Follow</a>
+                <li class="nav_item js-item">
+                    <a class="nav_link" href=""><i class="fa-solid nav_icon  fa-clock"></i> <span>Recently</span> </a>
                 </li>
                 <li class="nav_item border-bot"></li>
                 <ul class="library-music" id="scroll-library-music">
                     <li class="nav_item">
-                        <a class="nav_link library-sidebar" href="">Your collection</a>
+                        <a class="nav_link library-sidebar" href=""> <span>Your collection</span> </a>
                     </li>
                     <li class="nav_item">
-                        <a class="nav_link" href=""><i class="fa-solid nav_icon  fa-star"></i>Songs</a>
+                        <a class="nav_link" href=""><i class="fa-solid nav_icon  fa-radio"></i> <span>Radio</span> </a>
                     </li>
                     <li class="nav_item">
-                        <a class="nav_link" href=""><i class="fa-solid nav_icon  fa-clock"></i>Recently</a>
+                        <a class="nav_link" href=""><i class="fa-solid nav_icon fa-list"></i> <span>Follow</span> </a>
                     </li>
                     <li class="nav_item">
                         <a class="nav_link" href="">
-                            <i class="fa-solid nav_icon  fa-headphones"></i>New songs</a></li>
+                            <i class="fa-solid nav_icon  fa-headphones"></i> <span>New songs</span> </a></li>
                     <li class="nav_item">
-                        <a class="nav_link" href=""><i class="fa-solid nav_icon  fa-icons"></i>MV</a>
-                    </li>
-                    <!-- <li class="nav_listen-vip">
-                        <p>"Nghe nhạc không quảng cáo cùng kho nhạc VIP"</p>
-                        <div class="btn-update"><a>Nâng cấp vip</a></div>
-                    </li> -->
-                    <li class="nav_item">
-                        <a class="nav_link" href=""><i class="fa-solid nav_icon fa-star"></i>Top
-                            100</a>
+                        <a class="nav_link" href=""><i class="fa-solid nav_icon  fa-icons"></i><span>MV</span> </a>
                     </li>
                     <li class="nav_item">
-                        <a class="nav_link" href=""><i class="fa-solid nav_icon  fa-icons"></i>Category</a>
+                        <a class="nav_link" href=""><i class="fa-solid nav_icon fa-star"></i> <span>Top 100</span> </a>
+                    </li>
+                    <li class="nav_item">
+                        <a class="nav_link" href=""><i class="fa-solid nav_icon  fa-icons"></i> <span>Category</span> </a>
                     </li>
                     <li class="nav_item"><a class="nav_link" href=""><i
-                                class="fa-solid nav_icon fa-list-ol"></i>Playlist</a></li>
+                                class="fa-solid nav_icon fa-list-ol"></i> <span>Playlist</span> </a></li>
                 </ul>
                 <li class="nav_item border-bot"></li>
                 <li class="nav_create">+ CREATE NEW LIST</li>
@@ -130,11 +125,11 @@
                         </div>
                     </div>
                     <div class="music_search">
-                        <div class="btn-search">
+                        <div class="btn-search" onclick="searchFunction()">
                             <button><i class="fa-solid fa-magnifying-glass"></i></button>
                         </div>
                         <div class="input-search">
-                            <input type="text" placeholder="Search singer, playlist, top 100...">
+                            <input class="search" type="text" placeholder="Search singer, playlist, top 100...">
                         </div>
                     </div>
                 </div>
@@ -147,7 +142,7 @@
                     </ul>
                 </div>
         </div>
-        <div class="body-music grid wide" >
+        <div class="body-music grid wide active" >
             <div class="library-songs">
                 <h1>Thư viện</h1>
                 <i class="fa-solid fa-circle-play"></i>
@@ -218,8 +213,7 @@
                 </div>
             </div>
          </div>
-        <div class="body-music active grid wide">
-           
+        <div class="body-music grid wide">
             <div class="music_slider owl-carousel owl-theme">
                     <div class="item"><img src="./assets/banner_slider/slider7.jpg" alt=""></div>
                     <div class="item"><img src="./assets/banner_slider/slider3.jpg" alt=""></div>
@@ -607,6 +601,14 @@
             </div>
             <img src="./assets/Album_mp3/Gieo Que - Hoang Thuy Linh_ Den.mp3" alt="">
         </div>
+        <div class="body-music grid wide">
+        
+        </div>
+        <div class="body-music grid wide">
+            <h1 class="recent-songs_heading">Bài hát phát gần đây</h1>
+            <div class="recent-songs">
+                <input type="hidden" id="input_id" value="">
+            </div>
         </div>
     </div>
     <div class="footer">
@@ -623,20 +625,20 @@
     </div>
         <div class="footer_list-function">
             <div class="footer_function-icon">
-                <div class="btn-random">
+                <div class="btn-button btn-random">
                     <i class="fa-solid fa-shuffle"></i>
                 </div>
-                <div class="btn-prev">
+                <div class="btn-button btn-prev">
                     <i class="fa-solid fa-backward"></i>
                 </div>
-                <div class="btn-toggle-play">
+                <div class="btn-button btn-toggle-play">
                     <i class="fa-solid fa-pause icon-pause"></i>
                     <i class="fa-solid fa-play icon-play"></i>
                 </div>
-                <div class="btn-next">
+                <div class="btn-button btn-next">
                     <i class="fa-solid fa-forward"></i>
                 </div>
-                <div class="btn-repeat">
+                <div class="btn-button btn-repeat">
                     <i class="fa-solid fa-repeat"></i>
                 </div>
                
