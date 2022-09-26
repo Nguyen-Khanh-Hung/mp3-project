@@ -131,6 +131,12 @@
                         <div class="input-search">
                             <input class="search" type="text" placeholder="Search singer, playlist, top 100...">
                         </div>
+                        <div>
+                            <div class="music-search-recommend">
+                            
+                            </div>
+                        </div>
+                      
                     </div>
                 </div>
                 <div class="header-right">
@@ -208,6 +214,7 @@
                         </div>
                     </div>
                     <div id="row_songs">
+
                        <audio id="audio" src=""></audio>
                     </div>
                 </div>
@@ -606,9 +613,31 @@
         </div>
         <div class="body-music grid wide">
             <h1 class="recent-songs_heading">Bài hát phát gần đây</h1>
-            <div class="recent-songs">
-                <input type="hidden" id="input_id" value="">
+           <div class="recent-songss" style="color: white;">
+            <div>
+                <!-- <div class="album-songs active" data-index="0">  
+                    <div class="song_order">
+                     <div class="song_order-icon"><i class="fa-solid fa-music"></i></div>  
+                        <div class="song_thumbnail">
+                            <div class="song_thumbnail-img"><img class="thumbnail-path" src="./assets/personal-song-lists/2 phút hơn.webp" alt=""></div>
+                            <div class="song_thumbnail-detail">
+                                <div class="song_thumbnail-name">Hai phút hơn</div>
+                                <div class="song_thumbnail-singer">Pháo, 2T</div>
+                            </div>
+                        </div>
+                     </div>
+                    <div class="song_name">
+                        <p class="song_name-title">Hai phút hơn</p>
+                    </div>
+                    <div class="song_time">
+                        <p>4p32s</p>
+                    </div>
+                </div> -->
             </div>
+            <div class="recent-songs">
+
+            </div>
+           </div>
         </div>
     </div>
     <div class="footer">
@@ -638,8 +667,8 @@
                 <div class="btn-button btn-next">
                     <i class="fa-solid fa-forward"></i>
                 </div>
-                <div class="btn-button btn-repeat">
-                    <i class="fa-solid fa-repeat"></i>
+                <div class="btn-button btn-repeat ">
+                    <i class="fa-solid fa-repeat icon-repeat"></i>
                 </div>
                
             </div>
@@ -652,8 +681,21 @@
         <div class="footer_support">
            <div class="footer_support-icon"><i class="fa-solid fa-microphone"></i></div> 
            <div class="footer_support-icon"><i class="fa-solid fa-window-restore"></i></div> 
-           <div class="footer_support-icon"><i class="fa-solid fa-volume-high"></i></div> 
-           <div class="footer_support-volume"><input type="range"></div>   
+           <div class="footer_support-icon">
+            <div class="footer_volume">
+                <div class="footer_btn-volume">
+                    <i class="fa-solid fa-volume-high"></i>
+                </div>
+                <div class="footer_btn-mute">
+                    <i class="fa-solid fa-volume-xmark"></i>
+                </div>
+            </div>
+            
+           
+        </div> 
+           <div class="footer_support-volume">
+            <input type="range" id="volume-input" name="volume-input" min="0" max="100" value="100">
+        </div>   
             <div class="footer_support-icon"> <i class="fa-solid fa-list-ol"></i></div>
         </div>
     </div>

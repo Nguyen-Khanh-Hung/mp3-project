@@ -13,6 +13,8 @@ TAB_ITEMS.forEach(function (item, index) {
 const app={
     currentIndex: 0,
     isPlaying: false,
+    isMute: false,
+    isReapeating: false,
     songs: [
         {
           id:1,
@@ -71,10 +73,10 @@ const app={
           image: "./assets/personal-song-lists/gieo quẻ.webp"
         }
       ],
-    render: function(songs){
+    render: function(){
       const __this=this
     var htmls= this.songs.map(function(song,index){
-          return `<div class="album-songs ${index === __this.currentIndex ? 'active' :''}" data-index="${index}">  
+          return `<div class="album-songs ${song.id-1=== __this.currentIndex ? 'active' :''}" data-index="${song.id-1}">  
           <div class="song_order">
            <div class="song_order-icon"><i class="fa-solid fa-music"></i></div>  
               <div class="song_thumbnail">
@@ -130,9 +132,34 @@ const app={
           }
         }
         // Xử lý khi tua bài hát
-        rangeInput.onchange=function(e){
-          const seekTime=audio.duration/100*e.target.value
+        rangeInput.oninput=function(e){
+          const seekTime=audio.duration/ 100 *e.target.value
           audio.currentTime=seekTime
+          audio.play();
+        }
+        btn_volume.onclick=function(){
+          if(_this.isMute){
+              volume_input.value = 100;
+              audio.volume = 1;
+              _this.isMute = false
+             btn_volume.classList.remove('mute')
+          }
+          else{
+              volume_input.value = 0;
+              audio.volume = 0;
+              _this.isMute = true;
+             btn_volume.classList.add('mute')
+          }
+        }
+        volume_input.oninput=function(e){
+          const seekVolume =  Number(e.target.value/100);
+          audio.volume = seekVolume
+          if(seekVolume==0){
+           btn_volume.classList.add('mute')
+          }
+          else{
+           btn_volume.classList.remove('mute')
+          }
         }
         // next Song
         btn_next_song.onclick=function(){
@@ -140,17 +167,21 @@ const app={
           audio.play()
           _this.render()
         }
+        // prev Song
         btn_prev_song.onclick=function(){
           _this.prevSong()
           audio.play()
           _this.render()
         }
+        // xử lý khi bài hát kết thúc
         audio.onended=function(){
           btn_next_song.click()
         }
+        // Xử lý bật random bài hát
         btn_random.onclick=function(){
           _this.randomSong()
         }
+        // bật bài hát ở home
         playList.onclick=function(e){
         const songNode= e.target.closest('.album-songs:not(.active');
         if(songNode){
@@ -167,17 +198,32 @@ const app={
         var song_name= songNode.querySelector('.song_thumbnail-name').textContent
         var songSinger= songNode.querySelector('.song_thumbnail-singer').textContent
         let tasks = _this.getLocalStorage();
-      var objectSongs={
-        dataPath,
-        imagePath,
-        name_title: song_name,
-        singer_title: songSinger,
-      }
-        tasks.push(objectSongs);
-      localStorage.setItem("tasks", JSON.stringify(tasks));
-      _this.renderRecentSongs(tasks)
-      e.preventDefault();
+        var objectSongs={
+          dataPath,
+          imagePath,
+          name_title: song_name,
+          singer_title: songSinger,
+        }  
+        if(tasks.length==1){
+          tasks.push(objectSongs);
+          console.log(1);
+        localStorage.setItem("tasks", JSON.stringify(tasks));
         }
+        else{
+            let checkArrray=tasks.some(item=>
+            item.dataPath==objectSongs.dataPath)
+            if(checkArrray){
+            }
+            else{
+              tasks.push(objectSongs)
+          localStorage.setItem("tasks", JSON.stringify(tasks));
+            }
+        }
+        _this.renderRecentSongs(tasks)
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+        e.preventDefault();
+        }
+        // bật bài hát ở Tab Recently
         playListRecently.onclick=function(e){
         const songNode= e.target.closest('.album-songs:not(.active');
         if(songNode){
@@ -188,16 +234,52 @@ const app={
           audio.play()
         }
         }
-        document.querySelector(".search").onkeyup=function(e){
+        // Search bài hát
+        play_tab_recommend.onclick=function(e){
+          const songNode= e.target.closest('.album-songs:not(.active');
+          if(songNode){
+            _this.currentIndex=Number(songNode.dataset.index) 
+            _this.loadCurrentSong()
+          let tasks = _this.getLocalStorage();
+            _this.renderRecentSongs(tasks)
+            audio.play()
+          }
+        }
+        // Search bài hát theo đánh chữ
+        search_input.onkeydown=function(e){
         let valueSearchInput = e.target.value;
-        console.log(valueSearchInput);
         var filterTasks= _this.songs.filter(function(value) {
-        return value.name.toLowerCase().includes(valueSearchInput)}
+        return value.name.toUpperCase().includes(valueSearchInput.toUpperCase())}
         )
-        console.log(filterTasks);
-        _this.render(filterTasks)
-        _this.loadCurrentSong()
-        }    
+          if(e.keyCode==32){
+            if(audio.pause()){
+              audio.pause()
+            }
+            else{
+              audio.play()
+            }
+          }
+        localStorage.setItem('recomend', JSON.stringify(filterTasks));
+        if(valueSearchInput){
+          play_tab_recommend.classList.add('active')
+        }
+        else{
+          play_tab_recommend.classList.remove('active')
+        }
+        _this.renderRecommendSongs(filterTasks)
+      
+        }
+        window.onkeydown = function (event) { 
+          
+          if (event.keyCode === 32) {
+              // event.preventDefault();
+              audio.paused ? audio.play() : audio.pause();
+          }
+          else if(valueSearchInput==event.keyCode === 32){
+            audio.play()
+          }
+      };
+
     },
     loadCurrentSong: function(){
         heading.textContent=this.currentSong.name
@@ -217,7 +299,7 @@ const app={
     },
     renderRecentSongs:function(tasks){
         let content = "";
-        tasks.forEach(function(task, index) {
+      tasks.forEach(function(task, index) {
           return content += `<div class="album-songs ${task.dataPath===this.currentIndex ? 'active' :''}" data-index="${task.dataPath}">  
           <div class="song_order">
            <div class="song_order-icon"><i class="fa-solid fa-music"></i></div>  
@@ -238,7 +320,25 @@ const app={
       </div> `;
         });
         document.querySelector(".recent-songs").innerHTML = content;
-      },
+    },
+    renderRecommendSongs:function(filterTasks){
+      let content = "";
+      filterTasks.forEach(function(recomend, index) {
+        return content += `<div class="album-songs ${recomend.id-1===this.currentIndex ? 'active' :''}" data-index="${recomend.id-1}">  
+        <div class="song_order recommend">
+         <div class="song_order-icon"><i class="fa-solid fa-music"></i></div>  
+            <div class="song_thumbnail">
+                <div class="song_thumbnail-img"><img class="thumbnail-path" src="${recomend.image}" alt=""></div>
+                <div class="song_thumbnail-detail">
+                    <div class="song_thumbnail-name active">${recomend.name}</div>
+                    <div class="song_thumbnail-singer">${recomend.singer}</div>
+                </div>
+            </div>
+         </div>
+    </div> `;
+      });
+      document.querySelector(".music-search-recommend").innerHTML = content;
+  },
     nextSong: function(){
       this.currentIndex++
       if(this.currentIndex>=this.songs.length){
@@ -246,6 +346,7 @@ const app={
       }
       this.loadCurrentSong();
     },
+  
     getLocalStorage:function() {
       return localStorage.getItem("tasks") ? JSON.parse(localStorage.getItem("tasks")): [];
     },
@@ -266,6 +367,9 @@ const app={
         this.handleEvents();
         let tasks = this.getLocalStorage();
         this.renderRecentSongs(tasks);
+        // this.lists()
+        let filterTasks = this.getLocalStorage();
+        // this.renderRecommendSongs(filterTasks)
     }
 }
 app.start()

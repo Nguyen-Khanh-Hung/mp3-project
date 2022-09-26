@@ -29,7 +29,6 @@ ul{
 .parent{
     position: relative;
     overflow: hidden;
-
 }
 .overlay{
     position: absolute;

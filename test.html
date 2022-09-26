@@ -7,22 +7,20 @@
     <title>Document</title>
 </head>
 <body>
-    <script>
-        var values = [
-    { name: 'someName1' },
-    { name: 'someName2' },
-    { name: 'someName4' },
-    { name: 'someName2' }
-];
-
-var valueArr = values.map(function(item){ return item.name });
-function getValue(){
-    var isDuplicate = valueArr.some(function(item, idx){ 
-    return valueArr.indexOf(item) != idx 
-});
-}
-
-console.log(getValue());
+    <audio id="audio" src="./assets/Album_mp3/2-Phut-Hon-Phao-Mouse-T-Wack.mp3" width="300" controls></audio>
+    <input type="text">
+   <script>
+    if(audio){
+        audio.addEventListener("keydown", (e) => {
+  if (e.which == 32) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+   audio.paused ?audio.pause() :audio.play();
+    return false;
+  }
+})
+    }
+      
     </script>
 </body>
 </html>
