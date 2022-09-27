@@ -206,7 +206,6 @@
     padding-top: 10px;
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
-
 }
 .music-search-recommend.active{
     display: block;
@@ -320,8 +319,8 @@
     align-items: center;
     padding: 30px;
     bottom: 0;
-  z-index: 10000000;
-  justify-content: space-between;
+    z-index: 10000000;
+    justify-content: space-between;
 }
 .footer-song{
     display: flex;
@@ -336,7 +335,14 @@
 }
 .footer_name-song{
     font-size: 1.8rem;
+    font-weight: 400;
     color: #fff;
+    line-height: 2rem;
+    overflow: hidden;
+    display: block;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
 }
 .footer_name-singer{
     font-size: 1.4rem;

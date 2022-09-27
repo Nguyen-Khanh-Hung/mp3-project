@@ -186,7 +186,7 @@ const app={
         audio.ontimeupdate=function(){
           if(audio.duration){
             const progressPercentage = Math.floor(audio.currentTime/audio.duration*100)
-           rangeInput.value=progressPercentage
+            rangeInput.value=progressPercentage
           }
         }
         // Xử lý khi tua bài hát
@@ -233,7 +233,12 @@ const app={
         }
         // xử lý khi bài hát kết thúc
         audio.onended=function(){
-          btn_next_song.click()
+          if( _this.isReapeating){
+            audio.play()
+          }
+          else{
+            btn_next_song.click()
+          }
         }
         // Xử lý bật random bài hát
         btn_random.onclick=function(){
@@ -287,7 +292,7 @@ const app={
         if(songNode){
           _this.currentIndex=Number(songNode.dataset.index) 
           _this.loadCurrentSong()
-        let tasks = _this.getLocalStorage();
+          let tasks = _this.getLocalStorage();
           _this.renderRecentSongs(tasks)
           audio.play()
         }
@@ -297,12 +302,42 @@ const app={
           const songNode= e.target.closest('.album-songs:not(.active');
           e.stopPropagation();
           if(songNode){
-            _this.currentIndex=Number(songNode.dataset.index) 
-            _this.loadCurrentSong()
+          _this.currentIndex=Number(songNode.getAttribute('data-index')) 
+          _this.loadCurrentSong()
+          _this.render()
           let tasks = _this.getLocalStorage();
-            _this.renderRecentSongs(tasks)
-            audio.play()
+          _this.renderRecentSongs(tasks)
+          audio.play()
           }
+          var thumbnail_path= songNode.querySelector('.thumbnail-path')
+        var imagePath=thumbnail_path.getAttribute('src');
+        var dataPath=songNode.getAttribute('data-index');
+        var song_name= songNode.querySelector('.song_thumbnail-name').textContent
+        var songSinger= songNode.querySelector('.song_thumbnail-singer').textContent
+        let tasks = _this.getLocalStorage();
+        var objectSongs={
+          dataPath,
+          imagePath,
+          name_title: song_name,
+          singer_title: songSinger,
+        }  
+        if(tasks.length==1){
+          tasks.push(objectSongs);
+          console.log(1);
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+        }
+        else{
+            let checkArrray=tasks.some(item=>
+            item.dataPath==objectSongs.dataPath)
+            if(checkArrray){
+            }
+            else{
+              tasks.push(objectSongs)
+          localStorage.setItem("tasks", JSON.stringify(tasks));
+            }
+        }
+        _this.renderRecentSongs(tasks)
+        localStorage.setItem("tasks", JSON.stringify(tasks));
         }
         // Search bài hát theo đánh chữ
         search_input.onkeyup=function(e){
@@ -326,19 +361,25 @@ const app={
             play_tab_recommend.classList.remove('active')
           }
           _this.renderRecommendSongs(filterTasks)
-          }
+        }
          // Dừng hoặc phát bài hát bằng nút spacebar
         window.onkeyup = function (event) { 
             if (event.keyCode === 32) {
                 audio.paused ? audio.play() : audio.pause();
           }
         };
+        // Ngăn chặn hành động bị nổi bọt
         search_input.onclick=function(e){
           e.stopPropagation();
         }
+          // Ngăn chặn hành động bị nổi bọt
         document.querySelector('.music').onclick=function(){
           play_tab_recommend.classList.remove('active')
           search_input.value=''
+        }
+        btn_reapeat.onclick=function(){
+          _this.isReapeating=!_this.isReapeating
+          btn_reapeat.classList.toggle('active',_this.isReapeating)
         }
     },
     loadCurrentSong: function(){
@@ -358,9 +399,13 @@ const app={
       this.render()
     },
     renderRecentSongs:function(tasks){
+      const ____this=this
+      console.log(____this.currentIndex);
         let content = "";
       tasks.forEach(function(task, index) {
-          return content += `<div class="album-songs ${task.dataPath===this.currentIndex ? 'active' :''}" data-index="${task.dataPath}">  
+        console.log(task.dataPath);
+        console.log(____this.currentIndex);
+          return content += `<div class="album-songs ${task.dataPath==____this.currentIndex ? 'active' :''}" data-index="${task.dataPath}">  
           <div class="song_order">
            <div class="song_order-icon"><i class="fa-solid fa-music"></i></div>  
               <div class="song_thumbnail">
@@ -407,8 +452,15 @@ const app={
       this.loadCurrentSong();
     },
     getLocalStorage:function() {
-      return localStorage.getItem("tasks") ? JSON.parse(localStorage.getItem("tasks")): [];
+      return localStorage.getItem("tasks") ? JSON.parse(localStorage.getItem("tasks")): [{dataPath: "0",imagePath: "./assets/personal-song-lists/2 phút hơn.webp",
+        name_title
+        : 
+        "Hai phút hơn",
+        singer_title
+        : 
+        "Pháo, 2T"}];
     },
+    
     prevSong: function(){
       this.currentIndex--
       if(this.currentIndex<0){
