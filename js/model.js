@@ -26,6 +26,70 @@ const app={
         },
         {
           id:2,
+          name: "Waiting for you",
+          title:"Waiting for you",
+          singer: "MONO",
+          path: "./assets/Album_mp3/WaitingForYou-MONOOnionn-7733882.mp3",
+          image: "./assets/personal-song-lists/mono.jpg"
+        },
+        {
+          id:3,
+          name: "Vài câu nói có khiến người thay đổi",
+          title:"Vài câu nói có khiến người thay đổi",
+          singer: "Grey D",
+          path: "./assets/Album_mp3/y2mate.com - vaicaunoicokhiennguoithaydoi  GREY D  Hương Mùa Hè show tập 1.mp3",
+          image: "./assets/personal-song-lists/vaicaunoicokhiennguoithaydoi.jpg"
+        },
+        {
+          id:4,
+          name: "Thắc mắc",
+          title:"Thắc mắc",
+          singer: "Thịnh Suy",
+          path: "./assets/Album_mp3/y2mate.com - Thắc Mắc MĐX.mp3",
+          image: "./assets//personal-song-lists/thịhsuy.webp"
+        },
+        {
+          id:5,
+          name: "Mai mình xa",
+          title:"Mai mình xa",
+          singer: "Thịnh Suy",
+          path: "./assets/Album_mp3/y2mate.com - MAI MÌNH XA.mp3",
+          image: "./assets/personal-song-lists/thịhsuy.webp"
+        },
+        {
+          id:6,
+          name: "Tiny Love",
+          title:"Tiny Love",
+          singer: "Thịnh Suy",
+          path: "./assets/Album_mp3/y2mate.com - tiny love.mp3",
+          image: "./assets/personal-song-lists/thịhsuy.webp"
+        },
+        {
+          id:7,
+          name: "Lời đường mật",
+          title:"Lời đường mật",
+          singer: "HIEUTHUHAI",
+          path: "./assets/Album_mp3/Loiduongmat.mp3",
+          image: "./assets/personal-song-lists/loiduongmat.jpg"
+        },
+        {
+          id:8,
+          name: "Bật nhạc lên",
+          title:"Bật nhạc lên",
+          singer: "HieuThuHai",
+          path: "./assets/Album_mp3/bậtnhacjlen.mp3",
+          image: "./assets/personal-song-lists/batnhac.jpg"
+        },
+        {
+          id:9,
+          name: "Doremon Xuka",
+          title:"Doremon Xuka",
+          singer: "Lê Dương Bảo Lâm",
+          path: "./assets/Album_mp3/Doremon Nobita.mp3",
+          image: "./assets/personal-song-lists/le-duong-bao-lam-2114.png"
+        },
+        {
+          id:10,
           name: "Đâu ai chung tình được mãi",
           title:"Đâu ai chung tình được mãi",
           singer: "Đinh Tùng Huy, ACV Remix",
@@ -33,7 +97,7 @@ const app={
           image: "./assets/personal-song-lists/aichungtinhduocmai.webp"
         },
         {
-          id:3,
+          id:11,
           name: "Anh mắt ta chạm nhau",
           title:"Anh mắt ta chạm nhau",
           singer: "Ngô Lan Hương, Đại Mèo remix",
@@ -41,23 +105,16 @@ const app={
           image: "./assets/personal-song-lists/Ánh mắt ta chạm nhau.webp"
         },
         {
-          id:4,
+          id:12,
           name: "Chạy về nơi phía anh",
           title:"Chạy về nơi phía anh",
           singer: "Khắc Việt",
           path: "./assets/Album_mp3/Chay Ve Noi Phia Anh - Khac Viet.mp3",
           image: "./assets/personal-song-lists/chay ve noi phia anh.webp"
         },
+       
         {
-          id:5,
-          name: "Yêu đi đừng sợ",
-          title:"Yêu đi đừng sợ",
-          singer: "Only C",
-          path: "./assets/Album_mp3/Yeu Di Dung So - OnlyC.mp3",
-          image: "./assets/personal-song-lists/yêu đừng sợ đâu.jpeg"
-        },
-        {
-          id:6,
+          id:13,
           name: "Cô đơn dành cho ai",
           title:"Cô đơn dành cho ai",
           singer: "NAL, LEE KEN, Orinn Remix",
@@ -65,13 +122,14 @@ const app={
           image: "./assets/personal-song-lists/cô đơn dành cho ai.webp"
         },
         {
-          id:7,
+          id:14,
           name: "Gieo quẻ",
           title:"Gieo quẻ",
           singer: "Hoàng Thùy Linh",
           path: "./assets/Album_mp3/Gieo Que - Hoang Thuy Linh_ Den.mp3",
           image: "./assets/personal-song-lists/gieo quẻ.webp"
-        }
+        },
+       
       ],
     render: function(){
       const __this=this
@@ -117,12 +175,12 @@ const app={
         // Xử lý khi play
         audio.onplay=function(){
           _this.isPlaying=true;
-          document.querySelector('.footer_list-function').classList.add('playing')
+          footer_list.classList.add('playing')
         }
           // Xử lý khi pause
         audio.onpause=function(){
           _this.isPlaying=false;
-           document.querySelector('.footer_list-function').classList.remove('playing')
+          footer_list.classList.remove('playing')
         }
         // Xử lý range chạy theo tiến độ bài hát
         audio.ontimeupdate=function(){
@@ -237,6 +295,7 @@ const app={
         // Search bài hát
         play_tab_recommend.onclick=function(e){
           const songNode= e.target.closest('.album-songs:not(.active');
+          e.stopPropagation();
           if(songNode){
             _this.currentIndex=Number(songNode.dataset.index) 
             _this.loadCurrentSong()
@@ -246,40 +305,41 @@ const app={
           }
         }
         // Search bài hát theo đánh chữ
-        search_input.onkeydown=function(e){
-        let valueSearchInput = e.target.value;
-        var filterTasks= _this.songs.filter(function(value) {
-        return value.name.toUpperCase().includes(valueSearchInput.toUpperCase())}
-        )
-          if(e.keyCode==32){
-            if(audio.pause()){
-              audio.pause()
+        search_input.onkeyup=function(e){
+          let valueSearchInput = e.target.value.trim();
+          var filterTasks= _this.songs.filter(function(value) {
+          return value.name.toUpperCase().includes(valueSearchInput.toUpperCase())}
+          )
+            if(e.keyCode==32){
+              if(_this.isPlaying){
+                audio.pause()
+              }
+              else{
+                audio.play()
+              }
             }
-            else{
-              audio.play()
-            }
+          localStorage.setItem('recomend', JSON.stringify(filterTasks));
+          if(valueSearchInput){
+            play_tab_recommend.classList.add('active')
           }
-        localStorage.setItem('recomend', JSON.stringify(filterTasks));
-        if(valueSearchInput){
-          play_tab_recommend.classList.add('active')
+          else{
+            play_tab_recommend.classList.remove('active')
+          }
+          _this.renderRecommendSongs(filterTasks)
+          }
+         // Dừng hoặc phát bài hát bằng nút spacebar
+        window.onkeyup = function (event) { 
+            if (event.keyCode === 32) {
+                audio.paused ? audio.play() : audio.pause();
+          }
+        };
+        search_input.onclick=function(e){
+          e.stopPropagation();
         }
-        else{
+        document.querySelector('.music').onclick=function(){
           play_tab_recommend.classList.remove('active')
+          search_input.value=''
         }
-        _this.renderRecommendSongs(filterTasks)
-      
-        }
-        window.onkeydown = function (event) { 
-          
-          if (event.keyCode === 32) {
-              // event.preventDefault();
-              audio.paused ? audio.play() : audio.pause();
-          }
-          else if(valueSearchInput==event.keyCode === 32){
-            audio.play()
-          }
-      };
-
     },
     loadCurrentSong: function(){
         heading.textContent=this.currentSong.name
@@ -338,7 +398,7 @@ const app={
     </div> `;
       });
       document.querySelector(".music-search-recommend").innerHTML = content;
-  },
+    },
     nextSong: function(){
       this.currentIndex++
       if(this.currentIndex>=this.songs.length){
@@ -346,7 +406,6 @@ const app={
       }
       this.loadCurrentSong();
     },
-  
     getLocalStorage:function() {
       return localStorage.getItem("tasks") ? JSON.parse(localStorage.getItem("tasks")): [];
     },
