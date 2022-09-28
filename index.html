@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="./css/stylegird.css">
     <link rel="stylesheet" href="./css/responsive.css">
     <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/modal.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
         integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -29,10 +30,10 @@
                  nav:true,
                  responsive:{
                  0:{
-                     items:3
+                     items:1
                  },
                 600:{
-                 items:1
+                 items:2
                 },
                  1000:{
                  items:3
@@ -48,7 +49,7 @@
                      items:3
                  },
                 600:{
-                 items:1
+                 items:3
                 },
                  1000:{
                  items:7
@@ -78,35 +79,35 @@
                     Discover</a>
                 </li>
                 <li class="nav_item js-item ">
-                    <a class="nav_link" href=""><i class="fa-solid nav_icon  fa-star"></i> <span>Favorites Songs</span> </a>
+                    <a class="nav_link" href=""><i class="fa-solid nav_icon  fa-star"></i> <span>Songs</span> </a>
                 </li>
                 <li class="nav_item js-item">
                     <a class="nav_link" href=""><i class="fa-solid nav_icon  fa-clock"></i> <span>Recently</span> </a>
                 </li>
                 <li class="nav_item border-bot"></li>
                 <ul class="library-music" id="scroll-library-music">
-                    <li class="nav_item">
+                    <li class="nav_item js-message">
                         <a class="nav_link library-sidebar" href=""> <span>Your collection</span> </a>
                     </li>
-                    <li class="nav_item">
+                    <li class="nav_item js-message ">
                         <a class="nav_link" href=""><i class="fa-solid nav_icon  fa-radio"></i> <span>Radio</span> </a>
                     </li>
-                    <li class="nav_item">
+                    <li class="nav_item js-message ">
                         <a class="nav_link" href=""><i class="fa-solid nav_icon fa-list"></i> <span>Follow</span> </a>
                     </li>
-                    <li class="nav_item">
+                    <li class="nav_item js-message ">
                         <a class="nav_link" href="">
                             <i class="fa-solid nav_icon  fa-headphones"></i> <span>New songs</span> </a></li>
-                    <li class="nav_item">
+                    <li class="nav_item js-message ">
                         <a class="nav_link" href=""><i class="fa-solid nav_icon  fa-icons"></i><span>MV</span> </a>
                     </li>
-                    <li class="nav_item">
+                    <li class="nav_item js-message ">
                         <a class="nav_link" href=""><i class="fa-solid nav_icon fa-star"></i> <span>Top 100</span> </a>
                     </li>
-                    <li class="nav_item">
+                    <li class="nav_item js-message ">
                         <a class="nav_link" href=""><i class="fa-solid nav_icon  fa-icons"></i> <span>Category</span> </a>
                     </li>
-                    <li class="nav_item"><a class="nav_link" href=""><i
+                    <li class="nav_item js-message "><a class="nav_link" href=""><i
                                 class="fa-solid nav_icon fa-list-ol"></i> <span>Playlist</span> </a></li>
                 </ul>
                 <li class="nav_item border-bot"></li>
@@ -132,6 +133,16 @@
                             <input class="search" type="text" placeholder="Search singer, playlist, top 100...">
                         </div>
                         <div>
+                            <div class="music-search-history">
+                                <ul class="music-history-list">
+                                    <li class="music-history-item">Đề xuất cho bạn</li>
+                                    <li class="music-history-item"><i class="fa-solid fa-share"></i> <span> Gieo quẻ</span></li>
+                                    <li class="music-history-item"><i class="fa-solid fa-share"></i> <span>Chung tình</span></li>
+                                    <li class="music-history-item"><i class="fa-solid fa-share"></i> <span>ZingChart</span></li>
+                                    <li class="music-history-item"><i class="fa-solid fa-share"></i> <span>Hai phút</span></li>
+                                    <li class="music-history-item"><i class="fa-solid fa-share"></i> <span>Chạy về nơi</span></li>
+                                </ul>
+                            </div>
                             <div class="music-search-recommend">
                             
                             </div>
@@ -140,10 +151,10 @@
                 </div>
                 <div class="header-right">
                     <ul class="music_function">
-                        <li class="music_function-item"><img class="icon-header" src="./assets/img/chủ đề.png" alt=""></li>
-                        <li class="music_function-item"><i class="fa-sharp fa-solid fa-upload"></i></li>
-                        <li class="music_function-item"><i class="fa-solid fa-gear"></i></li>
-                        <li class="music_function-item"><i class="fa-solid fa-user"></i></li>
+                        <li class="music_function-item icon_function-header"><img class="icon-header" src="./assets/img/chủ đề.png" alt=""></li>
+                        <li class="music_function-item icon_function-header"><i class="  fa-sharp fa-solid fa-upload"></i></li>
+                        <li class="music_function-item  icon_function-header"><i class="fa-solid fa-gear"></i></li>
+                       <div class="avt-user"><img class="icon-header active" src="./assets/img/avtaaa.jpg" alt=""></div>
                     </ul>
                 </div>
         </div>
@@ -151,52 +162,6 @@
             <div class="library-songs">
                 <h1>Thư viện</h1>
                 <i class="fa-solid fa-circle-play"></i>
-            </div>
-            <div class="play-list">
-                <div class="music_news">
-                    <h2 class="music_suggest-heading">PLAYLIST  <i class="fa-solid fa-circle-plus"></i></h2>
-                    <ul class="row music_suggest-list">
-                        <li class="col p-2-4 parent">
-                            <ul>
-                                <li class="parent music-col-suggest">
-                                    <img class="music_suggest-img" src="./assets/music_news/news1.jpg" alt="">
-                                    <div class="overlay">
-                                    </div>
-                                    <div class="music-options">
-                                        <i class="fa-regular fa-heart"></i>
-                                        <i class="fa-regular fa-circle-play"></i>
-                                        <i class="fa-solid fa-ellipsis"></i>
-                                    </div>
-                                </li>
-                                <li class="music_suggest-item"><p>V-Pop Tháng 9/2022</p></li>
-                                <li class="music_suggest-item"><span>
-                                    Bảo Anh, Hồ Quang Hiếu, Vương Anh Tú
-                                    Ba với những ca khúc OST Việt
-                                </span> 
-                                </li>                
-                            </ul>
-                        </li>
-                        <li class="col p-2-4 parent">
-                            <ul>
-                                <li class="parent music-col-suggest">
-                                    <img class="music_suggest-img" src="./assets/music_news/hoàng dũng.webp" alt="">
-                                    <div class="overlay">
-                                    </div>
-                                    <div class="music-options">
-                                        <i class="fa-regular fa-heart"></i>
-                                        <i class="fa-regular fa-circle-play"></i>
-                                        <i class="fa-solid fa-ellipsis"></i>
-                                    </div>
-                                </li>
-                                <li class="music_suggest-item"><p>Guitar Vpop</p></li>
-                                <li class="music_suggest-item"><span>
-                                    Zing MP3
-                                </span> 
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
             </div>
             <div class="personal-songs">
                 <h2 class="music_suggest-heading">Thư viện bài hát</h2>
@@ -218,6 +183,111 @@
                     </div>
                 </div>
             </div>
+            <div class="play-list">
+                <div class="music_news">
+                    <h2 class="music_suggest-heading">PLAYLIST  <i class="fa-solid fa-circle-plus"></i></h2>
+                    <ul class="row music_suggest-list">
+                        <li class="col p-2-4 m-6 t-6 parent">
+                            <ul>
+                                <li class="parent music-col-suggest">
+                                    <img class="music_suggest-img" src="./assets/music_news/news1.jpg" alt="">
+                                    <div class="overlay">
+                                    </div>
+                                    <div class="music-options">
+                                        <div>
+                                            <i class="fa-regular fa-heart"></i>
+                                        </div>
+                                       
+                                        <i class="fa-regular fa-circle-play"></i>
+                                        <i class="fa-solid fa-ellipsis"></i>
+                                    </div>
+                                </li>
+                                <li class="music_suggest-item"><p>V-Pop Tháng 9/2022</p></li>
+                                <li class="music_suggest-item"><span>
+                                    Bảo Anh, Hồ Quang Hiếu, Vương Anh Tú
+                                </span> 
+                                </li>                
+                            </ul>
+                        </li>
+                        <li class="col p-2-4 m-6 t-6 parent">
+                            <ul>
+                                <li class="parent music-col-suggest">
+                                    <img class="music_suggest-img" src="./assets/music_news/hoàng dũng.webp" alt="">
+                                    <div class="overlay">
+                                    </div>
+                                    <div class="music-options">
+                                        <i class="fa-regular fa-heart"></i>
+                                        <i class="fa-regular fa-circle-play"></i>
+                                        <i class="fa-solid fa-ellipsis"></i>
+                                    </div>
+                                </li>
+                                <li class="music_suggest-item"><p>Guitar Vpop</p></li>
+                                <li class="music_suggest-item"><span>
+                                    Zing MP3
+                                </span> 
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="col p-2-4 m-6 t-6 parent">
+                            <ul>
+                                <li class="parent music-col-suggest">
+                                    <img class="music_suggest-img" src="./assets/music_news/playlist3.webp" alt="">
+                                    <div class="overlay">
+                                    </div>
+                                    <div class="music-options">
+                                        <i class="fa-regular fa-heart"></i>
+                                        <i class="fa-regular fa-circle-play"></i>
+                                        <i class="fa-solid fa-ellipsis"></i>
+                                    </div>
+                                </li>
+                                <li class="music_suggest-item"><p>Guitar Vpop</p></li>
+                                <li class="music_suggest-item"><span>
+                                    Zing MP3
+                                </span> 
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="col p-2-4 m-6 t-6 parent">
+                            <ul>
+                                <li class="parent music-col-suggest">
+                                    <img class="music_suggest-img" src="./assets/music_news/playlist4.webp" alt="">
+                                    <div class="overlay">
+                                    </div>
+                                    <div class="music-options">
+                                        <i class="fa-regular fa-heart"></i>
+                                        <i class="fa-regular fa-circle-play"></i>
+                                        <i class="fa-solid fa-ellipsis"></i>
+                                    </div>
+                                </li>
+                                <li class="music_suggest-item"><p>Guitar Vpop</p></li>
+                                <li class="music_suggest-item"><span>
+                                    Zing MP3
+                                </span> 
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="col p-2-4 m-6 t-6 parent">
+                            <ul>
+                                <li class="parent music-col-suggest">
+                                    <img class="music_suggest-img" src="./assets/music_news/playlist5.webp" alt="">
+                                    <div class="overlay">
+                                    </div>
+                                    <div class="music-options">
+                                        <i class="fa-regular fa-heart"></i>
+                                        <i class="fa-regular fa-circle-play"></i>
+                                        <i class="fa-solid fa-ellipsis"></i>
+                                    </div>
+                                </li>
+                                <li class="music_suggest-item"><p>Guitar Vpop</p></li>
+                                <li class="music_suggest-item"><span>
+                                    Zing MP3
+                                </span> 
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
          </div>
         <div class="body-music grid wide">
             <div class="music_slider owl-carousel owl-theme">
@@ -232,7 +302,7 @@
             <div class="music_suggest">
                 <h2 class="music_suggest-heading">Có thể bạn muốn nghe</h2>
                 <ul class="row music_suggest-list">
-                    <li class="col p-2-4 parent">
+                    <li class="col p-2-4 t-6 parent">
                         <ul>
                             <li class="parent music-col-suggest">
                                 <img class="music_suggest-img" src="./assets/listen-recommend/recomend1.webp" alt="">
@@ -253,7 +323,7 @@
                         </ul>
                        
                     </li>
-                    <li class="col p-2-4 parent">
+                    <li class="col p-2-4 t-6 parent">
                         <ul>
                             <li class="parent music-col-suggest">
                                 <img class="music_suggest-img" src="./assets/listen-recommend/recomend2.webp" alt="">
@@ -275,7 +345,7 @@
                         </ul>
                        
                     </li>
-                    <li class="col p-2-4 parent">
+                    <li class="col p-2-4 t-6 parent">
                         <ul>
                             <li class="parent music-col-suggest">
                                 <img class="music_suggest-img" src="./assets/listen-recommend/recomed3.webp" alt="">
@@ -297,7 +367,7 @@
                         </ul>
                        
                     </li>
-                    <li class="col p-2-4 parent">
+                    <li class="col p-2-4 t-6 parent">
                         <ul>
                             <li class="parent music-col-suggest">
                                 <img class="music_suggest-img" src="./assets/listen-recommend/recomend4.webp" alt="">
@@ -319,7 +389,7 @@
                         </ul>
                        
                     </li>
-                    <li class="col p-2-4 parent">
+                    <li class="col p-2-4 t-6 parent">
                         <ul>
                             <li class="parent music-col-suggest">
                                 <img class="music_suggest-img" src="./assets/listen-recommend/recomend5.webp" alt="">
@@ -345,7 +415,7 @@
             <div class="music_suggest">
                 <h2 class="music_suggest-heading">Dành cho bạn</h2>
                 <ul class="row music_suggest-list">
-                    <li class="col p-2-4 parent">
+                    <li class="col p-2-4 t-6 parent">
                         <ul>
                             <li class="parent music-col-suggest">
                                 <img class="music_suggest-img" src="./assets/music_suggest/suggest1.jpg" alt="">
@@ -367,7 +437,7 @@
                         </ul>
                        
                     </li>
-                    <li class="col p-2-4 parent">
+                    <li class="col p-2-4 t-6 parent">
                         <ul>
                             <li class="parent music-col-suggest">
                                 <img class="music_suggest-img" src="./assets/music_suggest/suggest2.jpg" alt="">
@@ -389,7 +459,7 @@
                         </ul>
                        
                     </li>
-                    <li class="col p-2-4 parent">
+                    <li class="col p-2-4 t-6 parent">
                         <ul>
                             <li class="parent music-col-suggest">
                                 <img class="music_suggest-img" src="./assets/music_suggest/suggest3.jpg" alt="">
@@ -411,7 +481,7 @@
                         </ul>
                        
                     </li>
-                    <li class="col p-2-4 parent">
+                    <li class="col p-2-4 t-6 parent">
                         <ul>
                             <li class="parent music-col-suggest">
                                 <img class="music_suggest-img" src="./assets/music_suggest/suggest4.jpg" alt="">
@@ -433,7 +503,7 @@
                         </ul>
                        
                     </li>
-                    <li class="col p-2-4 parent">
+                    <li class="col p-2-4 t-6 parent">
                         <ul>
                             <li class="parent music-col-suggest">
                                 <img class="music_suggest-img" src="./assets/music_suggest/suggest5.jpg" alt="">
@@ -460,7 +530,7 @@
             <div class="music_news">
                 <h2 class="music_suggest-heading">Nhạc mới mỗi ngày</h2>
                 <ul class="row music_suggest-list">
-                    <li class="col p-2-4 parent">
+                    <li class="col p-2-4 t-6 parent">
                         <ul>
                             <li class="parent music-col-suggest">
                                 <img class="music_suggest-img" src="./assets/music_news/news1.jpg" alt="">
@@ -482,7 +552,7 @@
                         </ul>
                        
                     </li>
-                    <li class="col p-2-4 parent">
+                    <li class="col p-2-4 t-6 parent">
                         <ul>
                             <li class="parent music-col-suggest">
                                 <img class="music_suggest-img" src="./assets/music_news/news2.jpg" alt="">
@@ -504,7 +574,7 @@
                         </ul>
                        
                     </li>
-                    <li class="col p-2-4 parent">
+                    <li class="col p-2-4 t-6 parent">
                         <ul>
                             <li class="parent music-col-suggest">
                                 <img class="music_suggest-img" src="./assets/music_news/news3.jpg" alt="">
@@ -525,7 +595,7 @@
                         </ul>
                        
                     </li>
-                    <li class="col p-2-4 parent">
+                    <li class="col p-2-4 t-6 parent">
                         <ul>
                             <li class="parent music-col-suggest">
                                 <img class="music_suggest-img" src="./assets/music_news/news4.jpg" alt="">
@@ -545,7 +615,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="col p-2-4 parent">
+                    <li class="col p-2-4 t-6 parent">
                         <ul>
                             <li class="parent music-col-suggest">
                                 <img class="music_suggest-img" src="./assets/music_news/news5.jpg" alt="">
@@ -570,21 +640,21 @@
             <div class="music_news">
                 <h2 class="music_suggest-heading">#Zing chart</h2>
                 <ul class="row music_suggest-list">
-                    <li class="col p-4 parent">
+                    <li class="col p-4 t-6 m-12 parent">
                         <ul>
                             <li class="parent music-col-suggest">
                                 <img class="music_suggest-img" src="./assets/banner_tank/banner_rank1.jpg" alt="">  
                             </li>
                         </ul>
                     </li>
-                    <li class="col p-4 parent">
+                    <li class="col col p-4 t-6 m-12 parent">
                         <ul>
                             <li class="parent music-col-suggest">
                                 <img class="music_suggest-img" src="./assets/banner_tank/banner_rank2.jpg" alt=""> 
                             </li>
                         </ul> 
                     </li>
-                    <li class="col p-4 parent">
+                    <li class="col col p-4 t-6 m-12 parent">
                         <ul>
                             <li class="parent music-col-suggest">
                                 <img class="music_suggest-img" src="./assets/banner_tank/banner_rank3.jpg" alt="">
@@ -608,7 +678,10 @@
             <img src="./assets/Album_mp3/Gieo Que - Hoang Thuy Linh_ Den.mp3" alt="">
         </div>
         <div class="body-music grid wide">
-        
+            <h1 class="recent-songs_heading">Bài hát được yêu thích</h1>
+           <div id="favoriteSongs">
+
+           </div> 
         </div>
         <div class="body-music grid wide">
             <h1 class="recent-songs_heading">Bài hát phát gần đây</h1>
@@ -620,6 +693,7 @@
         </div>
     </div>
     <div class="footer">
+    <div class="footer-above">
         <div class="footer-song">
        <div> <img class="footer_thumbnail" src="./assets/footer/hoangdung_pic.jpg" alt=""></div>
         <div  class="footer-song-discrip">
@@ -627,10 +701,13 @@
             <div class="footer_name-singer">Hoàng Dũng</div>
         </div>
         <div class="footer_favorite">
-            <i class="fa-regular fa-heart"></i>
+            <div class="btn_heart">
+                <i class="fa-regular fa-heart icon-heart"></i>
+            </div>
+           
             <i class="fa-solid fa-ellipsis"></i>
         </div>
-    </div>
+        </div>
         <div class="footer_list-function">
             <div class="footer_function-icon">
                 <div class="btn-button btn-random">
@@ -669,8 +746,6 @@
                     <i class="fa-solid fa-volume-xmark"></i>
                 </div>
             </div>
-            
-           
         </div> 
            <div class="footer_support-volume">
             <input type="range" id="volume-input" name="volume-input" min="0" max="100" value="100">
@@ -678,7 +753,37 @@
             <div class="footer_support-icon"> <i class="fa-solid fa-list-ol"></i></div>
         </div>
     </div>
-</div>
+    <div class="footer_bottom">
+        <div class="col p-3 js-mobile-tab active">
+            <a class="nav_link" href="#">
+            <i class="fa-solid fa-house nav_icon"></i>
+            <div> Cá nhân</div>
+         </a>
+        </div>
+        <div class="col p-3 js-mobile-tab">
+                <a class="nav_link" href="">
+                <i class="fa-solid nav_icon  fa-record-vinyl"></i>
+               <div> Khám phá</div>
+            </a>
+        </div>
+        <div class="col p-3 js-mobile-tab"> 
+                <a class="nav_link" href=""><i class="fa-solid nav_icon  fa-star"></i> <div>Yêu thích</div></a>
+            </div>
+        <div class="col p-3 js-mobile-tab">
+                <a class="nav_link" href=""><i class="fa-solid nav_icon  fa-clock"></i> <div>Gần đây</div> </a>
+        </div>    
+    </div>
+    </div>
+    </div>
+    <div class="modal">
+       <p>Đã thêm bài hát vào thư viện</p>
+       <i class="fa-solid fa-circle-xmark btn-exit-modal"></i>
+    </div>
+    <div class="modal-message">
+        <p>Chức năng hiện chưa hoàn thiện</p>
+       <i class="fa-solid fa-circle-xmark btn-exit-modal"></i>
+    </div>
+
 <script src="./js/const.js"></script>
 <script src="./js/model.js"></script>
 <script src="./js/view.js"></script>

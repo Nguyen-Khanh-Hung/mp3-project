@@ -1,0 +1,44 @@
+.modal{
+    position: fixed;
+    bottom:20%;
+    left:0;
+    transform: translateX(-300px);
+    padding: 20px;
+    z-index: 10000000000000;
+    background-color: aliceblue;
+    border-radius: 5px;
+}
+.modal-message{
+    position: fixed;
+    top:10%;
+    right:0;
+    transform: translateX(300px);
+    padding: 20px;
+    z-index: 10000000000000;
+    background-color: aliceblue;
+    border-radius: 5px;
+}
+.modal-message.active{
+    transform: translateX(-10px);
+    transition: all 0.5s;
+}
+.modal-message p{
+    font-size: 1.6rem;
+}
+.modal p{
+    font-size: 1.6rem;
+}
+.modal.active{
+    transform: translateX(20px);
+    transition: all 0.5s;
+}
+.btn_heart{
+    cursor: pointer;
+}
+.btn-exit-modal{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 1.4rem;
+    cursor: pointer;
+}

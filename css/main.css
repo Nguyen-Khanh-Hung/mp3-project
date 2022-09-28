@@ -1,6 +1,4 @@
-/* .app-container{
-    height: auto;
-} */
+
 .container{
     width: 100%;
     display: flex;
@@ -14,6 +12,7 @@
 }
 .side-bar{
     width: 15%;
+    display: none;
 }
 .nav_tabs{
     width: 100%;
@@ -59,8 +58,9 @@
     text-transform: uppercase;
 }
 .nav_icon{
-    font-size: 1.8rem;
+    font-size: 1.2rem;
     margin-right: 20px;
+    
 }
 .nav_listen-vip{
     background-image: linear-gradient( 117deg,#5a4be7,#c86dd7 102%);
@@ -152,7 +152,6 @@
   background-color: rgb(28, 31, 35);
   box-shadow: rgba(55, 55, 55, 0.2) 0px 2px 8px 0px;
   padding: 15px;
-  margin-right: -25px;
   margin-left: -25px;
 }
 .header-left{
@@ -172,7 +171,7 @@
     position: relative;
 }
 .btn-search button{
-    padding: 12px 10px;
+    padding: 8px 10px;
     border: none;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
@@ -182,14 +181,16 @@
     width: 450px;
 }
 .input-search input{
-    padding: 12px 0;
+    padding: 8px 0;
     padding-left: 5px;
     width: 100%;
     border: none;
     outline: none;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
-
+}
+.search:focus~.music-search-history{
+    display: block;
 }
 .music_function{
     display: flex;
@@ -207,13 +208,53 @@
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
 }
+.music-search-history{
+    position: absolute;
+    width: 100%;
+    background-color: #fff;
+    top: 80%;
+    left: 0;
+    right: 0;
+    display: none;
+    padding-top: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.music-history-item{
+    padding: 10px 20px;
+    font-size: 1.4rem;
+}
+.music-history-item span{
+   margin-left: 10px;
+}
+.music-history-item:hover{
+   background-color: #9e9d9d;
+   color: #fff;
+   cursor: pointer;
+}
+.music-history-item:last-child:hover{
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+ }
 .music-search-recommend.active{
     display: block;
+}
+.avt-user{
+    width: 35px;
+	height: 35px;
 }
 .music_function .icon-header{
     width: 20px;
     line-height: 35px;
     margin-top: 5px;
+}
+.icon-header.active{
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    margin-top: unset;
+    margin-left: 20px;
 }
 .music_function-item{
     width: 35px;
@@ -307,21 +348,26 @@
 }
 .recent-songs_heading{
     color: #fff;
-    margin-top: 30px;
+    margin: 30px 0;
 }
 /* Footer */
 .footer{
     position: fixed;
-    width: 100%;
-    height: 80px;
-    display: flex;
-    background-color: #292e34;
-    align-items: center;
-    padding: 30px;
     bottom: 0;
     z-index: 10000000;
-    justify-content: space-between;
+    width: 100%;
+    background-color: #292e34;   
 }
+/* footer above */
+.footer-above{
+    display: flex;
+    align-items: center;
+    padding: 30px;
+    justify-content: space-between;
+    width: 100%;
+    height: 80px;
+}
+
 .footer-song{
     display: flex;
     width: 25%;
@@ -332,22 +378,26 @@
 }
 .footer_thumbnail{
     height: 50px;
+    border-radius: 50%;
+   
 }
 .footer_name-song{
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     font-weight: 400;
     color: #fff;
     line-height: 2rem;
     overflow: hidden;
-    display: block;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
 }
 .footer_name-singer{
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     color: #8d8b8f;
-    margin-top: 5px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
 }
 .footer_favorite{
     display: flex;
@@ -419,6 +469,28 @@
 .footer_support-volume{
     margin-left: 10px;
 }
+
+/* footer bottom */
+.footer_bottom{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+.js-mobile-tab{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.js-mobile-tab.active{
+    background-color: #6c6f73;
+    color: #fff;
+}
 .library-songs{
     margin-top: 30px;
     display: flex;
@@ -470,6 +542,9 @@
 .album-songs p{
     font-size: 1.4rem;
     color: #6c6f73;
+}
+.album-songs:hover{
+    background-color: #292929;
 }
 
 .album-songs-title{
@@ -528,6 +603,9 @@
     display: flex;
     float: left;
 }
+.song_time{
+    width: 25%;
+}
 .song_name-title{
     color: #8d8b8f;
     font-size: 1.4rem;
@@ -537,4 +615,9 @@
     color: #cbcbcb;
     cursor: pointer;
 }
-
+.icon-heart.active{
+    color: red;
+}
+.favoriteSongs{
+    margin-top: 20px;
+}

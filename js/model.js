@@ -9,6 +9,27 @@ TAB_ITEMS.forEach(function (item, index) {
         e.preventDefault();
     })
 })
+
+document.querySelectorAll('.js-mobile-tab').forEach(function (item, index) {
+  item.addEventListener('click', function (e) {
+      const body_music = TAB_BODY[index];
+      document.querySelector('.js-mobile-tab.active').classList.remove('active');
+      document.querySelector('.body-music.active').classList.remove('active');
+      this.classList.add('active');
+      body_music.classList.add('active');
+      e.preventDefault();
+  })
+})
+
+document.querySelectorAll('.js-message').forEach(function(message){
+  message.addEventListener('click',function (e) {
+    document.querySelector('.modal-message').classList.add('active');
+    e.preventDefault();
+    setTimeout(function(){
+      document.querySelector('.modal-message').classList.remove('active');
+    },1000)
+})
+})
 // Render songs
 const app={
     currentIndex: 0,
@@ -46,7 +67,7 @@ const app={
           title:"Thắc mắc",
           singer: "Thịnh Suy",
           path: "./assets/Album_mp3/y2mate.com - Thắc Mắc MĐX.mp3",
-          image: "./assets//personal-song-lists/thịhsuy.webp"
+          image: "./assets/personal-song-lists/thịhsuy.webp"
         },
         {
           id:5,
@@ -70,7 +91,7 @@ const app={
           title:"Lời đường mật",
           singer: "HIEUTHUHAI",
           path: "./assets/Album_mp3/Loiduongmat.mp3",
-          image: "./assets/personal-song-lists/loiduongmat.jpg"
+          image: "./assets/personal-song-lists/heithu2.jpg"
         },
         {
           id:8,
@@ -78,7 +99,7 @@ const app={
           title:"Bật nhạc lên",
           singer: "HieuThuHai",
           path: "./assets/Album_mp3/bậtnhacjlen.mp3",
-          image: "./assets/personal-song-lists/batnhac.jpg"
+          image: "./assets/personal-song-lists/heithu2.jpg"
         },
         {
           id:9,
@@ -86,7 +107,7 @@ const app={
           title:"Doremon Xuka",
           singer: "Lê Dương Bảo Lâm",
           path: "./assets/Album_mp3/Doremon Nobita.mp3",
-          image: "./assets/personal-song-lists/le-duong-bao-lam-2114.png"
+          image: "./assets/personal-song-lists/doraemon.webp"
         },
         {
           id:10,
@@ -159,7 +180,7 @@ const app={
         Object.defineProperty(this, 'currentSong',{
             get: function(){
                 return this.songs[this.currentIndex]  
-            }  
+            } 
         })
     },
     handleEvents: function(){
@@ -233,7 +254,7 @@ const app={
         }
         // xử lý khi bài hát kết thúc
         audio.onended=function(){
-          if( _this.isReapeating){
+          if(_this.isReapeating){
             audio.play()
           }
           else{
@@ -247,19 +268,26 @@ const app={
         // bật bài hát ở home
         playList.onclick=function(e){
         const songNode= e.target.closest('.album-songs:not(.active');
-        if(songNode){
-          _this.currentIndex=Number(songNode.getAttribute('data-index')) 
-          _this.loadCurrentSong()
-          _this.render()
-          let tasks = _this.getLocalStorage();
-          _this.renderRecentSongs(tasks)
-          audio.play()
+        const songTime=e.target.closest('.song_time');
+        if(songNode|| songTime){
+          if(songNode){
+            _this.currentIndex=Number(songNode.getAttribute('data-index')) 
+            _this.loadCurrentSong()
+            _this.render()
+            let tasks = _this.getLocalStorage();
+            _this.renderRecentSongs(tasks)
+            audio.play()
+          } 
+          if(songTime){
+            e.stopPropagation();
+          }
         }
-        var thumbnail_path= songNode.querySelector('.thumbnail-path')
-        var imagePath=thumbnail_path.getAttribute('src');
-        var dataPath=songNode.getAttribute('data-index');
-        var song_name= songNode.querySelector('.song_thumbnail-name').textContent
-        var songSinger= songNode.querySelector('.song_thumbnail-singer').textContent
+            var thumbnail_path= songNode.querySelector('.thumbnail-path')
+            var imagePath=thumbnail_path.getAttribute('src');
+            var dataPath=songNode.getAttribute('data-index');
+            var song_name= songNode.querySelector('.song_thumbnail-name').textContent
+            var songSinger= songNode.querySelector('.song_thumbnail-singer').textContent
+          // }
         let tasks = _this.getLocalStorage();
         var objectSongs={
           dataPath,
@@ -269,7 +297,6 @@ const app={
         }  
         if(tasks.length==1){
           tasks.push(objectSongs);
-          console.log(1);
         localStorage.setItem("tasks", JSON.stringify(tasks));
         }
         else{
@@ -309,7 +336,7 @@ const app={
           _this.renderRecentSongs(tasks)
           audio.play()
           }
-          var thumbnail_path= songNode.querySelector('.thumbnail-path')
+        var thumbnail_path= songNode.querySelector('.thumbnail-path')
         var imagePath=thumbnail_path.getAttribute('src');
         var dataPath=songNode.getAttribute('data-index');
         var song_name= songNode.querySelector('.song_thumbnail-name').textContent
@@ -323,8 +350,7 @@ const app={
         }  
         if(tasks.length==1){
           tasks.push(objectSongs);
-          console.log(1);
-        localStorage.setItem("tasks", JSON.stringify(tasks));
+          localStorage.setItem("tasks", JSON.stringify(tasks));
         }
         else{
             let checkArrray=tasks.some(item=>
@@ -343,7 +369,8 @@ const app={
         search_input.onkeyup=function(e){
           let valueSearchInput = e.target.value.trim();
           var filterTasks= _this.songs.filter(function(value) {
-          return value.name.toUpperCase().includes(valueSearchInput.toUpperCase())}
+          return value.name.toUpperCase().includes(valueSearchInput.toUpperCase())||value.singer.toUpperCase().includes(valueSearchInput.toUpperCase())
+        }
           )
             if(e.keyCode==32){
               if(_this.isPlaying){
@@ -356,6 +383,7 @@ const app={
           localStorage.setItem('recomend', JSON.stringify(filterTasks));
           if(valueSearchInput){
             play_tab_recommend.classList.add('active')
+          document.querySelector('.music-search-history').style.display='none'
           }
           else{
             play_tab_recommend.classList.remove('active')
@@ -371,15 +399,42 @@ const app={
         // Ngăn chặn hành động bị nổi bọt
         search_input.onclick=function(e){
           e.stopPropagation();
+          document.querySelector('.music-search-history').style.display='block'
         }
           // Ngăn chặn hành động bị nổi bọt
         document.querySelector('.music').onclick=function(){
           play_tab_recommend.classList.remove('active')
           search_input.value=''
+          document.querySelector('.music-search-history').style.display='none'
         }
         btn_reapeat.onclick=function(){
           _this.isReapeating=!_this.isReapeating
           btn_reapeat.classList.toggle('active',_this.isReapeating)
+        }
+        btn_heart.onclick=function(){
+          document.querySelector('.modal').classList.add('active')
+            let arrFavoriteSongs=_this.getFavoriteStorage()
+            var objectFavoriteSongs={
+              nameSong:_this.currentSong.name,
+              nameSinger:_this.currentSong.singer,
+              imgSrc:document.querySelector('.footer_thumbnail').getAttribute('src'),
+              audioSrc:_this.currentSong.path
+            }
+            setTimeout(function() {
+              document.querySelector('.modal').classList.remove('active')
+            }, 1500);            
+              let checkValueArrray=arrFavoriteSongs.some(item=>
+                item.nameSong==objectFavoriteSongs.nameSong) 
+                if(checkValueArrray){
+                }
+                else{
+                  arrFavoriteSongs.push(objectFavoriteSongs)
+                  localStorage.setItem("arrFavoriteSongs", JSON.stringify(arrFavoriteSongs));
+            }
+           _this.renderFavoriteSongs(arrFavoriteSongs)
+        }
+        document.querySelector('.btn-exit-modal').onclick=function(){
+          document.querySelector('.modal').classList.remove('active')
         }
     },
     loadCurrentSong: function(){
@@ -391,7 +446,7 @@ const app={
     randomSong: function(){
       let newIndex
       do{
-        newIndex=Math.floor(Math.random() * app.songs.length)
+        newIndex=Math.floor(Math.random() * this.songs.length)
       }while(newIndex===this.currentIndex)
       this.currentIndex=newIndex
       this.loadCurrentSong()
@@ -400,11 +455,8 @@ const app={
     },
     renderRecentSongs:function(tasks){
       const ____this=this
-      console.log(____this.currentIndex);
         let content = "";
       tasks.forEach(function(task, index) {
-        console.log(task.dataPath);
-        console.log(____this.currentIndex);
           return content += `<div class="album-songs ${task.dataPath==____this.currentIndex ? 'active' :''}" data-index="${task.dataPath}">  
           <div class="song_order">
            <div class="song_order-icon"><i class="fa-solid fa-music"></i></div>  
@@ -426,10 +478,36 @@ const app={
         });
         document.querySelector(".recent-songs").innerHTML = content;
     },
+    renderFavoriteSongs:function(arrFavoriteSongs){
+      const ____this=this
+        let content = "";
+        arrFavoriteSongs.forEach(function(task, index) {
+          return content += `<div class="album-songs ${task.dataPath==____this.currentIndex ? 'active' :''}" data-index="${task.dataPath}">  
+          <div class="song_order">
+           <div class="song_order-icon"><i class="fa-solid fa-music"></i></div>  
+              <div class="song_thumbnail">
+                  <div class="song_thumbnail-img"><img class="thumbnail-path" src="${task.imgSrc}" alt=""></div>
+                  <div class="song_thumbnail-detail">
+                      <div class="song_thumbnail-name">${task.nameSong}</div>
+                      <div class="song_thumbnail-singer">${task.nameSinger}</div>
+                  </div>
+              </div>
+           </div>
+          <div class="song_name">
+              <p class="song_name-title">${task.nameSong}</p>
+          </div>
+          <div class="song_time">
+              <p>4p32s</p>
+          </div>
+      </div> `;
+        });
+        document.querySelector("#favoriteSongs").innerHTML = content;
+    },
     renderRecommendSongs:function(filterTasks){
       let content = "";
       filterTasks.forEach(function(recomend, index) {
-        return content += `<div class="album-songs ${recomend.id-1===this.currentIndex ? 'active' :''}" data-index="${recomend.id-1}">  
+        return content += `
+        <div class="album-songs ${recomend.id-1===this.currentIndex ? 'active' :''}" data-index="${recomend.id-1}">  
         <div class="song_order recommend">
          <div class="song_order-icon"><i class="fa-solid fa-music"></i></div>  
             <div class="song_thumbnail">
@@ -453,14 +531,13 @@ const app={
     },
     getLocalStorage:function() {
       return localStorage.getItem("tasks") ? JSON.parse(localStorage.getItem("tasks")): [{dataPath: "0",imagePath: "./assets/personal-song-lists/2 phút hơn.webp",
-        name_title
-        : 
-        "Hai phút hơn",
-        singer_title
-        : 
-        "Pháo, 2T"}];
+        name_title: "Hai phút hơn",
+        singer_title: "Pháo, 2T"}]
+        ;
     },
-    
+    getFavoriteStorage:function() {
+      return localStorage.getItem("arrFavoriteSongs") ? JSON.parse(localStorage.getItem("arrFavoriteSongs")): [];
+    },
     prevSong: function(){
       this.currentIndex--
       if(this.currentIndex<0){
@@ -478,9 +555,8 @@ const app={
         this.handleEvents();
         let tasks = this.getLocalStorage();
         this.renderRecentSongs(tasks);
-        // this.lists()
-        let filterTasks = this.getLocalStorage();
-        // this.renderRecommendSongs(filterTasks)
+        let arrFavoriteSongs=this.getFavoriteStorage()
+        this.renderFavoriteSongs(arrFavoriteSongs);
     }
 }
 app.start()

@@ -1,0 +1,136 @@
+
+/* PC*/
+@media screen and (min-width: 1024px){
+    .side-bar{
+        display: block!important;
+    }
+    .footer_bottom{
+        display: none!important;
+    }
+}
+/* Tablet*/ 
+@media screen and (min-width: 768px) and (max-width: 1023px){
+    .music{
+        width: 100%!important;
+        padding-bottom: 180px!important;
+    }
+    .transform_page{
+        display: none!important;
+    }
+    .footer-above {
+        padding: 5px 20px!important;
+    }
+    .footer_support{
+        display: none!important;
+    }
+    .song_name{
+        display: none!important;
+    }
+    .song_time{
+        display: none!important;
+    }
+    .song_order{
+        width: 100%!important;
+    }
+    .album-songs-album{
+        display: none!important;
+    }
+    .footer_favorite{
+        display: none!important;
+    }
+    .btn-button{
+        margin-left: 10px;
+    }
+    .footer-song {
+        width: 45%!important;
+    }
+    .footer_list-function{
+        width: 55%!important;
+    }
+    .footer_function-icon{
+        margin-bottom: 10px!important;
+        width: unset!important;
+    }
+    .footer_thumbnail{
+        height: 35px!important;
+    }
+    .footer-song-discrip {
+        margin-left: 5px!important;
+    }
+    .nav_icon{
+        margin-right: unset!important;
+    }
+    /* .icon_function-header{
+        display: none!important;
+    } */
+}
+/* Mobile */
+@media screen and (max-width: 767px){
+    .music{
+        width: 100%!important;
+        padding-bottom: 160px!important;
+    }
+    .transform_page{
+        display: none!important;
+    }
+    .footer-above {
+        padding: 5px 10px!important;
+    }
+    .footer_support{
+        display: none!important;
+    }
+    .song_name{
+        display: none!important;
+    }
+    .song_time{
+        display: none!important;
+    }
+    .song_order{
+        width: 100%!important;
+    }
+    .album-songs-album{
+        display: none!important;
+    }
+    .footer_favorite{
+        display: none!important;
+    }
+    .btn-button{
+        margin-left: 10px;
+    }
+    .footer-song {
+        width: 45%!important;
+    }
+    .footer_list-function{
+        width: 55%!important;
+    }
+    .footer_function-icon{
+        margin-bottom: 10px!important;
+        width: unset!important;
+    }
+    .footer_thumbnail{
+        height: 35px!important;
+    }
+    .footer-song-discrip {
+        margin-left: 5px!important;
+    }
+    .footer_function-icon i{
+        font-size: 1.4rem!important;
+    }
+    .nav_icon{
+        margin-right: unset!important;
+        margin-bottom: 5px;
+    }
+    .nav_link{
+        font-size: 1.2rem!important;
+    }
+    .icon_function-header{
+        display: none!important;
+    }
+    .input-search{
+        width: 200px!important;
+    }
+}
+
+@media screen and (max-width: 767px){
+
+}

@@ -6,7 +6,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
- 
 }
 .music_slider:hover{
     cursor: pointer;
@@ -55,8 +54,6 @@
     color: #FFF!important;
     font-size: 4rem;
     box-shadow: 0 2px 4px 0 rgb(226 102 102 / 15%);
-    
-
 }
 .owl-prev span{
     font-size: 4rem;

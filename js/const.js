@@ -19,7 +19,13 @@ const play_tab_recommend  =  document.querySelector('.music-search-recommend')
 const search_input        =  document.querySelector(".search")
 const valueSearchInput    =  document.querySelector(".search").value;
 const btn_search          =  document.querySelector('.btn-search')
-const btn_reapeat        =  document.querySelector('.icon-repeat')
+const btn_reapeat         =  document.querySelector('.icon-repeat')
+const btn_heart           =  document.querySelector('.btn_heart')
+const icon_heart = document.querySelector('.icon-heart')
+console.log(icon_heart);
+
+
+
 
 
 
