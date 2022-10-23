@@ -35,17 +35,14 @@
     .album-songs-album{
         display: none!important;
     }
-    .footer_favorite{
-        display: none!important;
-    }
     .btn-button{
         margin-left: 10px;
     }
     .footer-song {
-        width: 45%!important;
+        width: 55%!important;
     }
     .footer_list-function{
-        width: 55%!important;
+        width: 45%!important;
     }
     .footer_function-icon{
         margin-bottom: 10px!important;
@@ -60,9 +57,7 @@
     .nav_icon{
         margin-right: unset!important;
     }
-    /* .icon_function-header{
-        display: none!important;
-    } */
+   
 }
 /* Mobile */
 @media screen and (max-width: 767px){
@@ -89,9 +84,6 @@
         width: 100%!important;
     }
     .album-songs-album{
-        display: none!important;
-    }
-    .footer_favorite{
         display: none!important;
     }
     .btn-button{
@@ -129,8 +121,8 @@
     .input-search{
         width: 200px!important;
     }
+    .modal{
+        bottom:30%!important;;
+    }
 }
 
-@media screen and (max-width: 767px){
-
-}

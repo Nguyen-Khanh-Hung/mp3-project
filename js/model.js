@@ -27,7 +27,7 @@ document.querySelectorAll('.js-message').forEach(function(message){
     e.preventDefault();
     setTimeout(function(){
       document.querySelector('.modal-message').classList.remove('active');
-    },1000)
+    },1500)
 })
 })
 // Render songs
@@ -179,7 +179,7 @@ const app={
     defineProperties: function(){
         Object.defineProperty(this, 'currentSong',{
             get: function(){
-                return this.songs[this.currentIndex]  
+                return this.songs[this.currentIndex]
             } 
         })
     },
@@ -305,7 +305,7 @@ const app={
             if(checkArrray){
             }
             else{
-              tasks.push(objectSongs)
+          tasks.push(objectSongs)
           localStorage.setItem("tasks", JSON.stringify(tasks));
             }
         }
@@ -325,6 +325,7 @@ const app={
         }
         }
         // Search bài hát
+       
         play_tab_recommend.onclick=function(e){
           const songNode= e.target.closest('.album-songs:not(.active');
           e.stopPropagation();
@@ -365,13 +366,52 @@ const app={
         _this.renderRecentSongs(tasks)
         localStorage.setItem("tasks", JSON.stringify(tasks));
         }
+        play_favorte.onclick=function(e){
+          const songNode= e.target.closest('.album-songs:not(.active');
+          e.stopPropagation();
+          if(songNode){
+          _this.currentIndex=Number(songNode.getAttribute('data-index')) 
+          _this.loadCurrentSong()
+          let tasks = _this.getLocalStorage();
+          _this.renderRecentSongs(tasks)
+          audio.play()
+          }
+        var thumbnail_path= songNode.querySelector('.thumbnail-path')
+        var imagePath=thumbnail_path.getAttribute('src');
+        var dataPath=songNode.getAttribute('data-index');
+        var song_name= songNode.querySelector('.song_thumbnail-name').textContent
+        var songSinger= songNode.querySelector('.song_thumbnail-singer').textContent
+        let tasks = _this.getLocalStorage();
+        var objectSongs={
+          dataPath,
+          imagePath,
+          name_title: song_name,
+          singer_title: songSinger,
+        }  
+        if(tasks.length==1){
+          tasks.push(objectSongs);
+          localStorage.setItem("tasks", JSON.stringify(tasks));
+        }
+        else{
+            let checkArrray=tasks.some(item=>
+            item.dataPath==objectSongs.dataPath)
+            if(checkArrray){
+            }
+            else{
+              tasks.push(objectSongs)
+          localStorage.setItem("tasks", JSON.stringify(tasks));
+            }
+        }
+        _this.renderRecentSongs(tasks)
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+        }
         // Search bài hát theo đánh chữ
         search_input.onkeyup=function(e){
           let valueSearchInput = e.target.value.trim();
-          var filterTasks= _this.songs.filter(function(value) {
-          return value.name.toUpperCase().includes(valueSearchInput.toUpperCase())||value.singer.toUpperCase().includes(valueSearchInput.toUpperCase())
-        }
-          )
+            var filterTasks= _this.songs.filter(function(value) {
+              return value.name.toUpperCase().includes(valueSearchInput.toUpperCase())
+              ||value.singer.toUpperCase().includes(valueSearchInput.toUpperCase())
+              })
             if(e.keyCode==32){
               if(_this.isPlaying){
                 audio.pause()
@@ -382,7 +422,7 @@ const app={
             }
           localStorage.setItem('recomend', JSON.stringify(filterTasks));
           if(valueSearchInput){
-            play_tab_recommend.classList.add('active')
+          play_tab_recommend.classList.add('active')
           document.querySelector('.music-search-history').style.display='none'
           }
           else{
@@ -415,6 +455,7 @@ const app={
           document.querySelector('.modal').classList.add('active')
             let arrFavoriteSongs=_this.getFavoriteStorage()
             var objectFavoriteSongs={
+              id:_this.currentIndex,
               nameSong:_this.currentSong.name,
               nameSinger:_this.currentSong.singer,
               imgSrc:document.querySelector('.footer_thumbnail').getAttribute('src'),
@@ -436,12 +477,15 @@ const app={
         document.querySelector('.btn-exit-modal').onclick=function(){
           document.querySelector('.modal').classList.remove('active')
         }
+        document.querySelector('.btn-exit-message').onclick=function(){
+          document.querySelector('.modal-message').classList.remove('active')
+        }
     },
     loadCurrentSong: function(){
         heading.textContent=this.currentSong.name
         singer.textContent=this.currentSong.singer
         thumb.setAttribute("src",`${this.currentSong.image}`);
-        audio.src=this.currentSong.path  
+        audio.src=this.currentSong.path 
     },
     randomSong: function(){
       let newIndex
@@ -456,7 +500,7 @@ const app={
     renderRecentSongs:function(tasks){
       const ____this=this
         let content = "";
-      tasks.forEach(function(task, index) {
+      tasks.forEach(function(task, index){
           return content += `<div class="album-songs ${task.dataPath==____this.currentIndex ? 'active' :''}" data-index="${task.dataPath}">  
           <div class="song_order">
            <div class="song_order-icon"><i class="fa-solid fa-music"></i></div>  
@@ -474,7 +518,7 @@ const app={
           <div class="song_time">
               <p>4p32s</p>
           </div>
-      </div> `;
+        </div>`;
         });
         document.querySelector(".recent-songs").innerHTML = content;
     },
@@ -482,7 +526,7 @@ const app={
       const ____this=this
         let content = "";
         arrFavoriteSongs.forEach(function(task, index) {
-          return content += `<div class="album-songs ${task.dataPath==____this.currentIndex ? 'active' :''}" data-index="${task.dataPath}">  
+          return content += `<div class="album-songs " data-index="${task.id}">  
           <div class="song_order">
            <div class="song_order-icon"><i class="fa-solid fa-music"></i></div>  
               <div class="song_thumbnail">
@@ -509,12 +553,12 @@ const app={
         return content += `
         <div class="album-songs ${recomend.id-1===this.currentIndex ? 'active' :''}" data-index="${recomend.id-1}">  
         <div class="song_order recommend">
-         <div class="song_order-icon"><i class="fa-solid fa-music"></i></div>  
+         <div class="song_order-icon active"><i class="fa-solid fa-music"></i></div>  
             <div class="song_thumbnail">
                 <div class="song_thumbnail-img"><img class="thumbnail-path" src="${recomend.image}" alt=""></div>
                 <div class="song_thumbnail-detail">
                     <div class="song_thumbnail-name active">${recomend.name}</div>
-                    <div class="song_thumbnail-singer">${recomend.singer}</div>
+                    <div class="song_thumbnail-singer active">${recomend.singer}</div>
                 </div>
             </div>
          </div>

@@ -21,8 +21,8 @@ const valueSearchInput    =  document.querySelector(".search").value;
 const btn_search          =  document.querySelector('.btn-search')
 const btn_reapeat         =  document.querySelector('.icon-repeat')
 const btn_heart           =  document.querySelector('.btn_heart')
-const icon_heart = document.querySelector('.icon-heart')
-console.log(icon_heart);
+const icon_heart          =  document.querySelector('.icon-heart')
+const play_favorte        =  document.querySelector('#favoriteSongs')
 
 
 

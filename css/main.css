@@ -175,8 +175,10 @@
     border: none;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
-    background-color: #fff;
+   background-color:rgb(90, 90, 90);
 }
+.btn-search i{
+  color: #fff;}
 .input-search{
     width: 450px;
 }
@@ -189,6 +191,13 @@
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
 }
+.input-search input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #fff;
+    opacity: 1; /* Firefox */
+  }
+.search{
+    background-color: rgb(90, 90, 90);
+}
 .search:focus~.music-search-history{
     display: block;
 }
@@ -199,7 +208,7 @@
 .music-search-recommend{
     position: absolute;
     width: 100%;
-    background-color: #fff;
+    background-color: rgb(90, 90, 90);
     top: 80%;
     left: 0;
     right: 0;
@@ -211,7 +220,7 @@
 .music-search-history{
     position: absolute;
     width: 100%;
-    background-color: #fff;
+    background-color: rgb(90, 90, 90);
     top: 80%;
     left: 0;
     right: 0;
@@ -224,6 +233,7 @@
 .music-history-item{
     padding: 10px 20px;
     font-size: 1.4rem;
+    color: #fff;
 }
 .music-history-item span{
    margin-left: 10px;
@@ -515,7 +525,6 @@
     
     margin-top: 10px;
 }
-
 .album-songs{
     display: flex;
     cursor: pointer;
@@ -527,6 +536,7 @@
 .album-songs.active{
     background-color: #292929;
 }
+
 .album-songs.active .song_thumbnail-singer{
     color: #fff;
 }
@@ -544,9 +554,11 @@
     color: #6c6f73;
 }
 .album-songs:hover{
-    background-color: #292929;
+    background-color: #292929;;
 }
-
+.album-songs:hover~.song_thumbnail-name.active{
+   color: #fff;
+}
 .album-songs-title{
     margin-left: 40px;
 }
@@ -565,6 +577,9 @@
 }
 .song_order-icon i{
     color: #8d8b8f;
+}
+.song_order-icon.active i{
+    color: rgb(236, 236, 236);
 }
 .song_thumbnail{
     display: flex;
@@ -590,12 +605,15 @@
     
 }
 .song_thumbnail-name.active{
-    color: #000;
+    color: rgb(255, 255, 255);
 }
 .song_thumbnail-singer{
     color: #8d8b8f;
     font-weight: 500;
     font-size: 1.2rem;
+}
+.song_thumbnail-singer.active{
+    color: rgb(255, 255, 255);
 }
 .song_name{
     width: 25%;
